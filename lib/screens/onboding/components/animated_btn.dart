@@ -35,8 +35,8 @@ class AnimatedBtn extends StatelessWidget {
                   const Icon(CupertinoIcons.arrow_right),
                   const SizedBox(width: 8),
                   Text(
-                    "Start the course",
-                    style: Theme.of(context).textTheme.button,
+                    "La respuesta",
+                    style: Theme.of(context).textTheme.labelLarge,
                   )
                 ],
               ),

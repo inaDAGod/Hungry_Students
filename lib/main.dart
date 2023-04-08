@@ -7,9 +7,9 @@ import 'package:firebase_database/firebase_database.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-    );
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
       // Obtiene una instancia de la base de datos
       final database = FirebaseDatabase.instance.reference();
@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'The Flutter Way',
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xFFEEF1F8),
