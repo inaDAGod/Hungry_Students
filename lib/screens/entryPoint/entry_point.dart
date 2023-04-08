@@ -66,7 +66,7 @@ class _EntryPointState extends State<EntryPoint>
     return Scaffold(
       extendBody: true,
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: Stack(
         children: [
           AnimatedPositioned(

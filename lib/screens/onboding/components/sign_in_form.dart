@@ -97,7 +97,7 @@ class _SignInFormState extends State<SignInForm> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "Email",
+                "Correo:",
                 style: TextStyle(
                   color: Colors.black54,
                 ),
@@ -111,16 +111,19 @@ class _SignInFormState extends State<SignInForm> {
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     prefixIcon: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: SvgPicture.asset("assets/icons/email.svg"),
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      child: Icon(
+                        Icons.email,
+                        color: Color.fromRGBO(255, 64, 64, 1),
+                      ),
                     ),
                   ),
                 ),
               ),
               const Text(
-                "Password",
+                "Contraseña:",
                 style: TextStyle(
                   color: Colors.black54,
                 ),
@@ -135,10 +138,13 @@ class _SignInFormState extends State<SignInForm> {
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     prefixIcon: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: SvgPicture.asset("assets/icons/password.svg"),
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      child: Icon(
+                        Icons.lock,
+                        color: Color.fromRGBO(255, 64, 64, 1),
+                      ),
                     ),
                   ),
                 ),
@@ -150,11 +156,11 @@ class _SignInFormState extends State<SignInForm> {
                     singIn(context);
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFF77D8E),
+                    backgroundColor: const Color.fromRGBO(255, 64, 64, 1),
                     minimumSize: const Size(double.infinity, 56),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
+                        topLeft: Radius.circular(25),
                         topRight: Radius.circular(25),
                         bottomRight: Radius.circular(25),
                         bottomLeft: Radius.circular(25),
@@ -163,9 +169,12 @@ class _SignInFormState extends State<SignInForm> {
                   ),
                   icon: const Icon(
                     CupertinoIcons.arrow_right,
-                    color: Color(0xFFFE0037),
+                    color: Color.fromARGB(255, 255, 252, 253),
                   ),
-                  label: const Text("Sign In"),
+                  label: const Text(
+                    "Iniciar Sesion",
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
               ),
             ],

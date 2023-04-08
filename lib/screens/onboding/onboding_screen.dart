@@ -72,9 +72,9 @@ class _OnbodingScreenState extends State<OnbodingScreen> {
                       child: Column(
                         children: const [
                           Text(
-                            "Learn design & code",
+                            "Hungry Students",
                             style: TextStyle(
-                              fontSize: 60,
+                              fontSize: 55,
                               fontWeight: FontWeight.w700,
                               fontFamily: "Poppins",
                               height: 1.2,
@@ -82,7 +82,7 @@ class _OnbodingScreenState extends State<OnbodingScreen> {
                           ),
                           SizedBox(height: 16),
                           Text(
-                            "Don’t skip design. Learn design and code, by building real apps with Flutter and Swift. Complete courses about the best tools.",
+                            "Todos los restaurantes alrededor de la universidad en un solo lugar.",
                           ),
                         ],
                       ),
@@ -114,7 +114,7 @@ class _OnbodingScreenState extends State<OnbodingScreen> {
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 24),
                       child: Text(
-                          "Purchase includes access to 30+ courses, 240+ premium tutorials, 120+ hours of videos, source files and certificates."),
+                          "¿No sabes que comer? ,¿No te alcanza tu dinero?,¿No tienes clientes?"),
                     )
                   ],
                 ),
