@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>759060619248-uhbu1j4ta3s9jedg4jnrq7245p2bnpo1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.759060619248-uhbu1j4ta3s9jedg4jnrq7245p2bnpo1</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC82vS3duwlQoPCeTwg4P0MgV9vs6qFk7s</string>
+	<key>GCM_SENDER_ID</key>
+	<string>759060619248</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.riveAnimation</string>
+	<key>PROJECT_ID</key>
+	<string>hungry-students-aba9a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>hungry-students-aba9a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:759060619248:ios:cfc554d45a7ab876038735</string>
+</dict>
+</plist>

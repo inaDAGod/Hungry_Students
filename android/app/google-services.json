@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "759060619248",
+    "project_id": "hungry-students-aba9a",
+    "storage_bucket": "hungry-students-aba9a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759060619248:android:eb75c2bdc4fe07d2038735",
+        "android_client_info": {
+          "package_name": "com.example.rive_animation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759060619248-8358ter6ocau6940s398jto9umnnokqn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5CGvctXkmYXcYz7j7PRR08nf4ZJE_TiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759060619248-8358ter6ocau6940s398jto9umnnokqn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
