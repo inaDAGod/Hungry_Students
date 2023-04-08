@@ -1,27 +1,19 @@
 import 'package:flutter/material.dart';
 
-
- 
-
-
-
-const Map<int, Color>  color =
-{
-50:Color.fromRGBO(136,14,79, .1),
-100:Color.fromRGBO(136,14,79, .2),
-200:Color.fromRGBO(136,14,79, .3),
-300:Color.fromRGBO(136,14,79, .4),
-400:Color.fromRGBO(136,14,79, .5),
-500:Color.fromRGBO(136,14,79, .6),
-600:Color.fromRGBO(136,14,79, .7),
-700:Color.fromRGBO(136,14,79, .8),
-800:Color.fromRGBO(136,14,79, .9),
-900:Color.fromRGBO(136,14,79, 1),
+const Map<int, Color> color = {
+  50: Color.fromRGBO(136, 14, 79, .1),
+  100: Color.fromRGBO(136, 14, 79, .2),
+  200: Color.fromRGBO(136, 14, 79, .3),
+  300: Color.fromRGBO(136, 14, 79, .4),
+  400: Color.fromRGBO(136, 14, 79, .5),
+  500: Color.fromRGBO(136, 14, 79, .6),
+  600: Color.fromRGBO(136, 14, 79, .7),
+  700: Color.fromRGBO(136, 14, 79, .8),
+  800: Color.fromRGBO(136, 14, 79, .9),
+  900: Color.fromRGBO(136, 14, 79, 1),
 };
 
-
 const MaterialColor colorCustom = MaterialColor(0xFFFF414D, color);
-
 
 class AnimatedBar extends StatelessWidget {
   const AnimatedBar({
@@ -39,7 +31,6 @@ class AnimatedBar extends StatelessWidget {
       height: 4,
       width: isActive ? 20 : 0,
       decoration: const BoxDecoration(
-        
           color: Color.fromRGBO(231, 187, 26, 1),
           borderRadius: BorderRadius.all(
             Radius.circular(12),

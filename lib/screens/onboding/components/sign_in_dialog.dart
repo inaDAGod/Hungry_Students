@@ -40,7 +40,7 @@ void showCustomDialog(BuildContext context, {required ValueChanged onValue}) {
                 Column(
                   children: [
                     const Text(
-                      "Sign in",
+                      "Ingresar",
                       style: TextStyle(
                         fontSize: 34,
                         fontFamily: "Poppins",
@@ -50,7 +50,7 @@ void showCustomDialog(BuildContext context, {required ValueChanged onValue}) {
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 16),
                       child: Text(
-                        "Access to 240+ hours of content. Learn design and code, by building real apps with Flutter and Swift.",
+                        "La mejor decision de tu vida",
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -63,7 +63,7 @@ void showCustomDialog(BuildContext context, {required ValueChanged onValue}) {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
-                            "OR",
+                            "O tambien",
                             style: TextStyle(
                               color: Colors.black26,
                               fontWeight: FontWeight.w500,
@@ -76,7 +76,7 @@ void showCustomDialog(BuildContext context, {required ValueChanged onValue}) {
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 24),
                       child: Text(
-                        "Sign up with Email, Apple or Google",
+                        "Inicia con tu correo:",
                         style: TextStyle(color: Colors.black54),
                       ),
                     ),
@@ -86,29 +86,7 @@ void showCustomDialog(BuildContext context, {required ValueChanged onValue}) {
                         IconButton(
                           onPressed: () {},
                           padding: EdgeInsets.zero,
-                          icon: SvgPicture.asset(
-                            "assets/icons/email_box.svg",
-                            height: 64,
-                            width: 64,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          padding: EdgeInsets.zero,
-                          icon: SvgPicture.asset(
-                            "assets/icons/apple_box.svg",
-                            height: 64,
-                            width: 64,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          padding: EdgeInsets.zero,
-                          icon: SvgPicture.asset(
-                            "assets/icons/google_box.svg",
-                            height: 64,
-                            width: 64,
-                          ),
+                          icon: Image.asset('assets/icons/google.png'),
                         ),
                       ],
                     ),
