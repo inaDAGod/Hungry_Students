@@ -6,16 +6,20 @@ import '../constants/constants.dart';
 import 'network_image.dart';
 
 class ItemTileHorizontal extends StatelessWidget {
-  const ItemTileHorizontal({
+  const ItemTileHorizontal(  {
     Key? key,
     required this.foodName,
     required this.imageUrl,
     required this.description,
+    required this.cal,
+    required this.price,
   }) : super(key: key);
 
   final String foodName;
   final String imageUrl;
   final String description;
+  final String cal;
+  final String price;
 
   @override
   Widget build(BuildContext context) {
@@ -50,14 +54,15 @@ class ItemTileHorizontal extends StatelessWidget {
                 const SizedBox(height: 16),
                 Row(
                   children: [
-                    SvgPicture.asset(AppIcons.time),
-                    const Text('10 min'),
+                    const Text('Precio'),
                     const Spacer(),
-                    SvgPicture.asset(AppIcons.stars),
-                    const Text('4.5'),
+                    Text(price,style: const TextStyle(fontWeight: FontWeight.bold,),),
                     const Spacer(),
-                    SvgPicture.asset(AppIcons.delivery),
-                    const Text('Free Delivery')
+                    const Text('Calificación:'),
+                    const Spacer(),
+                    Text(cal,style: const TextStyle(fontWeight: FontWeight.bold,),),
+                    const Spacer(),
+                    
                   ],
                 )
               ],
