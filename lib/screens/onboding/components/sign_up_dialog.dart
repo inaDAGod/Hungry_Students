@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter_svg/flutter_svg.dart'; ----> no se esta usando
+//import 'package:flutter_svg/flutter_svg.dart'; ---no se esta usando
 
-import 'sign_in_form.dart';
+import 'sign_up_form.dart';
 
-void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
+void showCustomDialogUp(BuildContext context, {required ValueChanged onValue}) {
   showGeneralDialog(
     context: context,
     barrierLabel: "Barrier",
@@ -40,21 +40,14 @@ void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
                 Column(
                   children: [
                     const Text(
-                      "Ingresar",
+                      "Registrarse",
                       style: TextStyle(
-                        fontSize: 34,
+                        fontSize: 23,
                         fontFamily: "Poppins",
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16),
-                      child: Text(
-                        "La mejor decision de tu vida",
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    const SignInForm(),
+                    const SignUpForm(),
                     Row(
                       children: const [
                         Expanded(
@@ -76,7 +69,7 @@ void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 24),
                       child: Text(
-                        "Inicia con Google:",
+                        "Registrate con Google:",
                         style: TextStyle(color: Colors.black54),
                       ),
                     ),
@@ -84,6 +77,7 @@ void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         IconButton(
+                          iconSize: double.minPositive,
                           onPressed: () {},
                           padding: EdgeInsets.zero,
                           icon: Image.asset('assets/icons/google.png'),
