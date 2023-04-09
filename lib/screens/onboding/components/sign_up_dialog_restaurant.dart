@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:rive_animation/screens/onboding/components/sign_up_form_restaurant.dart';
 //import 'package:flutter_svg/flutter_svg.dart'; ---no se esta usando
 
-import 'sign_up_form.dart';
+//import 'sign_up_form_restaurant.dart';
 
-void showCustomDialogUp(BuildContext context, {required ValueChanged onValue}) {
+void showCustomDialogUpRes(BuildContext context,
+    {required ValueChanged onValue}) {
   showGeneralDialog(
     context: context,
     barrierLabel: "Barrier",
@@ -39,7 +41,7 @@ void showCustomDialogUp(BuildContext context, {required ValueChanged onValue}) {
               children: [
                 Column(
                   children: [
-                    const SignUpForm(),
+                    const SignUpFormRes(),
                     Row(
                       children: const [
                         Expanded(

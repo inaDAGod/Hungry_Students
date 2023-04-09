@@ -194,7 +194,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     ),
                   ),
                   icon: const Icon(
-                    CupertinoIcons.arrow_right,
+                    CupertinoIcons.hand_point_right_fill,
                     color: Color.fromARGB(255, 255, 252, 253),
                   ),
                   label: const Text(
