@@ -16,7 +16,7 @@ class HomeGreetings extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Good Morning Farhan,',
+              'Bienvenido Usuario,',
               style: Theme.of(context)
                   .textTheme
                   .bodyLarge
@@ -24,7 +24,7 @@ class HomeGreetings extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Happy Freeyay!',
+              'Disfruta tu Comida!',
               style: Theme.of(context)
                   .textTheme
                   .headline5

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/components/item_tile_horizontal.dart';
+import '../../../core/components/item_tile_horizontal_2.dart';
 import '../../../core/constants/constants.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-class HomeSuggestionSection extends StatelessWidget {
-  const HomeSuggestionSection({
+class HomeSuggestionSectionRestaurants extends StatelessWidget {
+  const HomeSuggestionSectionRestaurants({
     Key? key,
   }) : super(key: key);
 
@@ -25,7 +25,7 @@ class HomeSuggestionSection extends StatelessWidget {
                     ?.copyWith(fontWeight: FontWeight.bold),
               ),
               Text(
-                '(Platos)',
+                '(Restaurantes)',
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge
@@ -37,7 +37,7 @@ class HomeSuggestionSection extends StatelessWidget {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: StreamBuilder(
-            stream: FirebaseDatabase.instance.reference().child('Popular_Dishes').onValue,
+            stream: FirebaseDatabase.instance.reference().child('Popular_Restaurants').onValue,
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 // Obtiene una lista de Mapas de los datos de Firebase
@@ -55,7 +55,6 @@ class HomeSuggestionSection extends StatelessWidget {
                       foodName: food['name'],
                       description: food['description'],
                       imageUrl: food['imageUrl'],
-                      price: food['price'],
                       cal: food['cal'],
                     ),
                   );
