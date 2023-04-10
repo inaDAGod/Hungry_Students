@@ -16,37 +16,24 @@ class CategorySelection extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.only(left: AppDefaults.padding),
         child: Row(
+          
           children: const [
             HomeChip(
-              name: 'Breakfast',
+              name: 'Almuerzo',
               icon: AppIcons.anyfood,
               isActive: true,
             ),
             HomeChip(
-              name: 'Lunch',
+              name: 'Desayuno',
               icon: AppIcons.burger,
               isActive: false,
             ),
             HomeChip(
-              name: 'Dinner',
+              name: 'Cena',
               icon: AppIcons.eggroll,
               isActive: false,
             ),
-            HomeChip(
-              name: 'Snack',
-              icon: AppIcons.pizza,
-              isActive: false,
-            ),
-            HomeChip(
-              name: 'Desert',
-              icon: AppIcons.pizza,
-              isActive: false,
-            ),
-            HomeChip(
-              name: 'Drinks',
-              icon: AppIcons.pizza,
-              isActive: false,
-            ),
+            
           ],
         ),
       ),
