@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+//import 'package:rive_animation/model/menu.dart'; -----> no esta en uso
+import 'package:rive_animation/screens/onboding/onboding_screen.dart';
 //import 'package:flutter_svg/flutter_svg.dart'; ----> no se esta usando
 
 import 'sign_in_form.dart';
@@ -50,7 +52,7 @@ void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 16),
                       child: Text(
-                        "La mejor decision de tu vida",
+                        "Bienvenido de nuevo",
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -92,20 +94,21 @@ void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
                     ),
                   ],
                 ),
-                const Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: -48,
-                  child: CircleAvatar(
-                    radius: 16,
-                    backgroundColor: Colors.white,
-                    child: Icon(
-                      Icons.close,
-                      size: 20,
-                      color: Colors.black,
-                    ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const OnbodingScreen(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.close,
+                    color: Colors.black,
                   ),
-                )
+                ),
               ],
             ),
           ),

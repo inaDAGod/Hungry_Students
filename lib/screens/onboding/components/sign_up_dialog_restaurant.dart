@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rive_animation/screens/onboding/components/sign_up_form_restaurant.dart';
+import 'package:rive_animation/screens/onboding/onboding_screen.dart';
 //import 'package:flutter_svg/flutter_svg.dart'; ---no se esta usando
 
 //import 'sign_up_form_restaurant.dart';
@@ -15,7 +16,7 @@ void showCustomDialogUpRes(BuildContext context,
     pageBuilder: (_, __, ___) {
       return Center(
         child: Container(
-          height: 620,
+          height: 700,
           margin: const EdgeInsets.symmetric(horizontal: 16),
           padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
           decoration: BoxDecoration(
@@ -41,25 +42,15 @@ void showCustomDialogUpRes(BuildContext context,
               children: [
                 Column(
                   children: [
-                    const SignUpFormRes(),
-                    Row(
-                      children: const [
-                        Expanded(
-                          child: Divider(),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16),
-                          child: Text(
-                            "O tambien",
-                            style: TextStyle(
-                              color: Colors.black26,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                        Expanded(child: Divider()),
-                      ],
+                    const Text(
+                      "Registro",
+                      style: TextStyle(
+                        fontSize: 23,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
+                    const SignUpFormRes(),
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 24),
                       child: Text(
@@ -80,20 +71,28 @@ void showCustomDialogUpRes(BuildContext context,
                     ),
                   ],
                 ),
-                const Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: -48,
-                  child: CircleAvatar(
-                    radius: 16,
-                    backgroundColor: Colors.white,
-                    child: Icon(
-                      Icons.close,
-                      size: 20,
-                      color: Colors.black,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  verticalDirection: VerticalDirection.up,
+                  children: [
+                    IconButton(
+                      alignment: Alignment.bottomRight,
+                      onPressed: () {
+                        Navigator.pop(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const OnbodingScreen(),
+                          ),
+                        );
+                      },
+                      icon: const Icon(
+                        Icons.close,
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
-                )
+                  ],
+                ),
               ],
             ),
           ),

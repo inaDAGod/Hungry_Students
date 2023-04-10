@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter_svg/flutter_svg.dart'; ---no se esta usando
-
+import 'package:rive_animation/screens/onboding/onboding_screen.dart';
 import 'sign_up_form.dart';
 
 void showCustomDialogUp(BuildContext context, {required ValueChanged onValue}) {
@@ -13,7 +13,7 @@ void showCustomDialogUp(BuildContext context, {required ValueChanged onValue}) {
     pageBuilder: (_, __, ___) {
       return Center(
         child: Container(
-          height: 620,
+          height: 660,
           margin: const EdgeInsets.symmetric(horizontal: 16),
           padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
           decoration: BoxDecoration(
@@ -39,6 +39,14 @@ void showCustomDialogUp(BuildContext context, {required ValueChanged onValue}) {
               children: [
                 Column(
                   children: [
+                    const Text(
+                      "Registro",
+                      style: TextStyle(
+                        fontSize: 34,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                     const SignUpForm(),
                     Row(
                       children: const [
@@ -78,20 +86,21 @@ void showCustomDialogUp(BuildContext context, {required ValueChanged onValue}) {
                     ),
                   ],
                 ),
-                const Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: -48,
-                  child: CircleAvatar(
-                    radius: 16,
-                    backgroundColor: Colors.white,
-                    child: Icon(
-                      Icons.close,
-                      size: 20,
-                      color: Colors.black,
-                    ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const OnbodingScreen(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.close,
+                    color: Colors.black,
                   ),
-                )
+                ),
               ],
             ),
           ),
