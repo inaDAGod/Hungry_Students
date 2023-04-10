@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-//import 'package:rive_animation/model/menu.dart'; -----> no esta en uso
+import 'package:rive_animation/screens/onboding/components/sign_up_form_restaurant.dart';
 import 'package:rive_animation/screens/onboding/onboding_screen.dart';
-//import 'package:flutter_svg/flutter_svg.dart'; ----> no se esta usando
+//import 'package:flutter_svg/flutter_svg.dart'; ---no se esta usando
 
-import 'sign_in_form.dart';
+//import 'sign_up_form_restaurant.dart';
 
-void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
+void showCustomDialogUpRes(BuildContext context,
+    {required ValueChanged onValue}) {
   showGeneralDialog(
     context: context,
     barrierLabel: "Barrier",
@@ -15,7 +16,7 @@ void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
     pageBuilder: (_, __, ___) {
       return Center(
         child: Container(
-          height: 620,
+          height: 700,
           margin: const EdgeInsets.symmetric(horizontal: 16),
           padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
           decoration: BoxDecoration(
@@ -42,43 +43,18 @@ void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
                 Column(
                   children: [
                     const Text(
-                      "Ingresar",
+                      "Registro",
                       style: TextStyle(
-                        fontSize: 34,
+                        fontSize: 23,
                         fontFamily: "Poppins",
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16),
-                      child: Text(
-                        "Bienvenido de nuevo",
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    const SignInForm(),
-                    Row(
-                      children: const [
-                        Expanded(
-                          child: Divider(),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16),
-                          child: Text(
-                            "O tambien",
-                            style: TextStyle(
-                              color: Colors.black26,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                        Expanded(child: Divider()),
-                      ],
-                    ),
+                    const SignUpFormRes(),
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 24),
                       child: Text(
-                        "Inicia con Google:",
+                        "Registrate con Google:",
                         style: TextStyle(color: Colors.black54),
                       ),
                     ),
@@ -86,6 +62,7 @@ void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         IconButton(
+                          iconSize: double.minPositive,
                           onPressed: () {},
                           padding: EdgeInsets.zero,
                           icon: Image.asset('assets/icons/google.png'),
@@ -94,20 +71,27 @@ void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
                     ),
                   ],
                 ),
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            const OnbodingScreen(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  verticalDirection: VerticalDirection.up,
+                  children: [
+                    IconButton(
+                      alignment: Alignment.bottomRight,
+                      onPressed: () {
+                        Navigator.pop(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const OnbodingScreen(),
+                          ),
+                        );
+                      },
+                      icon: const Icon(
+                        Icons.close,
+                        color: Colors.black,
                       ),
-                    );
-                  },
-                  icon: const Icon(
-                    Icons.close,
-                    color: Colors.black,
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),

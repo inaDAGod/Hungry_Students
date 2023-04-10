@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-//import 'package:rive_animation/model/menu.dart'; -----> no esta en uso
+//import 'package:flutter_svg/flutter_svg.dart'; ---no se esta usando
 import 'package:rive_animation/screens/onboding/onboding_screen.dart';
-//import 'package:flutter_svg/flutter_svg.dart'; ----> no se esta usando
+import 'sign_up_form.dart';
 
-import 'sign_in_form.dart';
-
-void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
+void showCustomDialogUp(BuildContext context, {required ValueChanged onValue}) {
   showGeneralDialog(
     context: context,
     barrierLabel: "Barrier",
@@ -15,7 +13,7 @@ void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
     pageBuilder: (_, __, ___) {
       return Center(
         child: Container(
-          height: 620,
+          height: 660,
           margin: const EdgeInsets.symmetric(horizontal: 16),
           padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
           decoration: BoxDecoration(
@@ -42,21 +40,14 @@ void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
                 Column(
                   children: [
                     const Text(
-                      "Ingresar",
+                      "Registro",
                       style: TextStyle(
                         fontSize: 34,
                         fontFamily: "Poppins",
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16),
-                      child: Text(
-                        "Bienvenido de nuevo",
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    const SignInForm(),
+                    const SignUpForm(),
                     Row(
                       children: const [
                         Expanded(
@@ -78,7 +69,7 @@ void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 24),
                       child: Text(
-                        "Inicia con Google:",
+                        "Registrate con Google:",
                         style: TextStyle(color: Colors.black54),
                       ),
                     ),
@@ -86,6 +77,7 @@ void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         IconButton(
+                          iconSize: double.minPositive,
                           onPressed: () {},
                           padding: EdgeInsets.zero,
                           icon: Image.asset('assets/icons/google.png'),

@@ -1,19 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_svg/flutter_svg.dart';  ---> no se esta usando
+//import 'package:flutter_svg/flutter_svg.dart'; --->no se esta usando
 import 'package:rive/rive.dart';
 import 'package:rive_animation/screens/entryPoint/entry_point.dart';
 
-class SignInForm extends StatefulWidget {
-  const SignInForm({
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<SignInForm> createState() => _SignInFormState();
+  State<SignUpForm> createState() => _SignUpFormState();
 }
 
-class _SignInFormState extends State<SignInForm> {
+class _SignUpFormState extends State<SignUpForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool isShowLoading = false;
   bool isShowConfetti = false;
@@ -41,7 +41,7 @@ class _SignInFormState extends State<SignInForm> {
     confetti = controller.findInput<bool>("Trigger explosion") as SMITrigger;
   }
 
-  void singIn(BuildContext context) {
+  void singUp(BuildContext context) {
     // confetti.fire();
     setState(() {
       isShowConfetti = true;
@@ -96,6 +96,32 @@ class _SignInFormState extends State<SignInForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Text(
+                "Nombre:",
+                style: TextStyle(
+                  color: Colors.black54,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8, bottom: 16),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "";
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      child: Icon(
+                        Icons.person,
+                        color: Color.fromRGBO(255, 64, 64, 1),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               const Text(
                 "Correo:",
                 style: TextStyle(
@@ -153,7 +179,7 @@ class _SignInFormState extends State<SignInForm> {
                 padding: const EdgeInsets.only(top: 8, bottom: 24),
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    singIn(context);
+                    singUp(context);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(255, 64, 64, 1),
@@ -172,7 +198,7 @@ class _SignInFormState extends State<SignInForm> {
                     color: Color.fromARGB(255, 255, 252, 253),
                   ),
                   label: const Text(
-                    "Iniciar Sesion",
+                    "Registrarse",
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
