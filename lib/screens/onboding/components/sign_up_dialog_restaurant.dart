@@ -41,8 +41,8 @@ void showCustomDialogUpRes(BuildContext context,
               clipBehavior: Clip.none,
               children: [
                 Column(
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       "Registro",
                       style: TextStyle(
                         fontSize: 23,
@@ -50,25 +50,7 @@ void showCustomDialogUpRes(BuildContext context,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const SignUpFormRes(),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 24),
-                      child: Text(
-                        "Registrate con Google:",
-                        style: TextStyle(color: Colors.black54),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        IconButton(
-                          iconSize: double.minPositive,
-                          onPressed: () {},
-                          padding: EdgeInsets.zero,
-                          icon: Image.asset('assets/icons/google.png'),
-                        ),
-                      ],
-                    ),
+                    SignUpFormRes(),
                   ],
                 ),
                 Row(

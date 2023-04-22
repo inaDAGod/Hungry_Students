@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:rive_animation/screens/entryPoint/entry_point.dart';
-import 'package:rive_animation/screens/onboding/onboding_screen.dart';
+//import 'package:rive_animation/screens/entryPoint/entry_point.dart';
+import 'package:rive_animation/screens/onboding/components/auth_page.dart';
+//import 'package:rive_animation/screens/onboding/onboding_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:firebase_database/firebase_database.dart';
+//import 'package:firebase_database/firebase_database.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,8 +12,8 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-      // Obtiene una instancia de la base de datos
-      final database = FirebaseDatabase.instance.reference();
+  // Obtiene una instancia de la base de datos
+  //final database = FirebaseDatabase.instance.reference();
 /*
       // Define el dato que se va a agregar a la base de datos
       Map<String, dynamic> data = {
@@ -58,7 +59,7 @@ class MyApp extends StatelessWidget {
           errorBorder: defaultInputBorder,
         ),
       ),
-      home: const OnbodingScreen(),
+      home: const AuthPage(),
     );
   }
 }
