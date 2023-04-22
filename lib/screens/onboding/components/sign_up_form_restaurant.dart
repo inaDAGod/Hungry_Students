@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 //import 'package:flutter_svg/flutter_svg.dart'; --->no se esta usando
 import 'package:rive/rive.dart';
 import 'package:rive_animation/screens/entryPoint/entry_point.dart';
+import 'package:rive_animation/screens/onboding/components/auth_service.dart';
 
 class SignUpFormRes extends StatefulWidget {
   const SignUpFormRes({
@@ -303,7 +304,10 @@ class _SignUpFormResState extends State<SignUpFormRes> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      AuthService().signIntWithGoogle();
+                      singSucces(context);
+                    },
                     padding: EdgeInsets.zero,
                     icon: Image.asset('assets/icons/google.png'),
                   ),
