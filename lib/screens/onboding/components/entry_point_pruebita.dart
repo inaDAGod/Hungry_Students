@@ -11,9 +11,12 @@ class Pruebita extends StatefulWidget {
 class _PruebitaState extends State<Pruebita> {
   final user = FirebaseAuth.instance.currentUser!;
 
-  // sign user out method
   void signUserOut() {
     FirebaseAuth.instance.signOut();
+  }
+
+  void correoVerificacion() {
+    user.sendEmailVerification();
   }
 
   @override
@@ -31,7 +34,7 @@ class _PruebitaState extends State<Pruebita> {
       ),
       body: Center(
           child: Text(
-        "LOGGED IN AS: " + user.email!,
+        "LOGGED IN AS: ${user.displayName}",
         style: const TextStyle(fontSize: 20),
       )),
     );

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 //import 'package:flutter_svg/flutter_svg.dart'; --->no se esta usando
 import 'package:rive/rive.dart';
 import 'package:rive_animation/screens/entryPoint/entry_point.dart';
+import 'package:rive_animation/screens/onboding/components/auth_page.dart';
 import 'package:rive_animation/screens/onboding/components/auth_service.dart';
 import 'package:rive_animation/screens/onboding/components/entry_point_pruebita.dart';
 
@@ -72,7 +73,7 @@ class _SignUpFormState extends State<SignUpForm> {
               Navigator.pop(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const EntryPoint(),
+                  builder: (context) => const Pruebita(),
                 ),
               );
             });
@@ -115,6 +116,8 @@ class _SignUpFormState extends State<SignUpForm> {
           email: emailController.text,
           password: passwordController.text,
         );
+        await FirebaseAuth.instance.currentUser
+            ?.updateDisplayName(nameController.text);
         // ignore: use_build_context_synchronously
         singSucces(context);
       } else {

@@ -112,6 +112,8 @@ class _SignUpFormResState extends State<SignUpFormRes> {
         email: emailController.text,
         password: passwordController.text,
       );
+      await FirebaseAuth.instance.currentUser
+          ?.updateDisplayName(nameController.text);
       // ignore: use_build_context_synchronously
       singSucces(context);
     } on FirebaseAuthException catch (e) {
