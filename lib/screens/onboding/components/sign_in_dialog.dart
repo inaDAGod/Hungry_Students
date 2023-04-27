@@ -40,8 +40,8 @@ void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
               clipBehavior: Clip.none,
               children: [
                 Column(
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       "Ingresar",
                       style: TextStyle(
                         fontSize: 34,
@@ -49,49 +49,14 @@ void showCustomDialogIn(BuildContext context, {required ValueChanged onValue}) {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.symmetric(vertical: 16),
                       child: Text(
                         "Bienvenido de nuevo",
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    const SignInForm(),
-                    Row(
-                      children: const [
-                        Expanded(
-                          child: Divider(),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16),
-                          child: Text(
-                            "O tambien",
-                            style: TextStyle(
-                              color: Colors.black26,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                        Expanded(child: Divider()),
-                      ],
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 24),
-                      child: Text(
-                        "Inicia con Google:",
-                        style: TextStyle(color: Colors.black54),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        IconButton(
-                          onPressed: () {},
-                          padding: EdgeInsets.zero,
-                          icon: Image.asset('assets/icons/google.png'),
-                        ),
-                      ],
-                    ),
+                    SignInForm(),
                   ],
                 ),
                 IconButton(

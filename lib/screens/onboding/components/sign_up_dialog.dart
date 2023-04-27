@@ -13,7 +13,7 @@ void showCustomDialogUp(BuildContext context, {required ValueChanged onValue}) {
     pageBuilder: (_, __, ___) {
       return Center(
         child: Container(
-          height: 660,
+          height: 700,
           margin: const EdgeInsets.symmetric(horizontal: 16),
           padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
           decoration: BoxDecoration(
@@ -38,52 +38,16 @@ void showCustomDialogUp(BuildContext context, {required ValueChanged onValue}) {
               clipBehavior: Clip.none,
               children: [
                 Column(
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       "Registro",
                       style: TextStyle(
-                        fontSize: 34,
+                        fontSize: 24,
                         fontFamily: "Poppins",
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const SignUpForm(),
-                    Row(
-                      children: const [
-                        Expanded(
-                          child: Divider(),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16),
-                          child: Text(
-                            "O tambien",
-                            style: TextStyle(
-                              color: Colors.black26,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                        Expanded(child: Divider()),
-                      ],
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 24),
-                      child: Text(
-                        "Registrate con Google:",
-                        style: TextStyle(color: Colors.black54),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        IconButton(
-                          iconSize: double.minPositive,
-                          onPressed: () {},
-                          padding: EdgeInsets.zero,
-                          icon: Image.asset('assets/icons/google.png'),
-                        ),
-                      ],
-                    ),
+                    SignUpForm(),
                   ],
                 ),
                 IconButton(

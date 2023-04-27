@@ -70,7 +70,6 @@ class _EntryPointState extends State<EntryPoint>
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: Stack(
         children: [
-          
           Transform(
             alignment: Alignment.center,
             transform: Matrix4.identity()
@@ -90,7 +89,6 @@ class _EntryPointState extends State<EntryPoint>
               ),
             ),
           ),
-          
         ],
       ),
       bottomNavigationBar: Transform.translate(
