@@ -15,22 +15,24 @@ class SearchBox extends StatelessWidget {
       child: TextFormField(
         decoration: InputDecoration(
           fillColor: Colors.grey.shade200,
+          
           filled: true,
-          hintText: 'Search food',
+          hintText: 'Buscar',
           prefixIcon: Padding(
             padding: const EdgeInsets.all(8),
             child: SvgPicture.asset(AppIcons.search),
           ),
+          
           border: OutlineInputBorder(
-            borderRadius: AppDefaults.borderRadius,
+            borderRadius: BorderRadius.circular(22),
             borderSide: const BorderSide(width: 0.1),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: AppDefaults.borderRadius,
+            borderRadius: BorderRadius.circular(22),
             borderSide: const BorderSide(width: 0.1),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: AppDefaults.borderRadius,
+            borderRadius: BorderRadius.circular(22),
             borderSide: const BorderSide(width: 0.1),
           ),
           prefixIconConstraints: const BoxConstraints(maxWidth: 48),

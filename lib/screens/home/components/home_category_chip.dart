@@ -20,8 +20,8 @@ class HomeChip extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(right: isActive ? 8 : 4),
       child: Material(
-        color: isActive ? AppColors.primary : null,
-        borderRadius: BorderRadius.circular(32),
+        color: isActive ? Color.fromARGB(255, 253, 79, 100): null,
+        borderRadius: BorderRadius.circular(20),
         child: InkWell(
           onTap: () {},
           borderRadius: AppDefaults.borderRadius,
@@ -43,7 +43,7 @@ class HomeChip extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .bodyLarge
-                      ?.copyWith(color: isActive ? Colors.black : Colors.grey),
+                      ?.copyWith(color: isActive ? Colors.white : Colors.grey),
                 ),
               ],
             ),

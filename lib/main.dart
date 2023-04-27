@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:rive_animation/screens/entryPoint/entry_point.dart';
-import 'package:rive_animation/screens/onboding/onboding_screen.dart';
+//import 'package:rive_animation/screens/entryPoint/entry_point.dart';
+import 'package:rive_animation/screens/onboding/components/auth_page.dart';
+//import 'package:rive_animation/screens/onboding/onboding_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:firebase_database/firebase_database.dart';
+//import 'package:firebase_database/firebase_database.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,27 +12,24 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-      /*// Obtiene una instancia de la base de datos
-      final database = FirebaseDatabase.instance.reference();
-
+  // Obtiene una instancia de la base de datos
+  //final database = FirebaseDatabase.instance.reference();
+/*
       // Define el dato que se va a agregar a la base de datos
       Map<String, dynamic> data = {
         'name': 'Dona',
         'description': 'skaldjakjsdlkaj',
         'imageUrl':'https://images.ecestaticos.com/DiS5WxaZIGQm4ospyeo7E9Zi5r4=/0x118:2269x1393/1200x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F8b5%2Fc1d%2F016%2F8b5c1d0163f7a26de81530b12e1e3a02.jpg',
-        'price':'20.0',
-        'cal':'3.5',
+        'cal':'3',
       };
-
       // Agrega el dato a la base de datos
       try {
-        await database.child('Popular_Dishes').push().set(data);
+        await database.child('Popular_Restaurants').push().set(data);
         print('Dato agregado a Firebase Realtime Database');
       } catch (e) {
         print('Error al agregar dato a Firebase Realtime Database: $e');
-      }*/
-
-
+      }
+*/
   runApp(const MyApp());
 }
 
@@ -58,7 +56,7 @@ class MyApp extends StatelessWidget {
           errorBorder: defaultInputBorder,
         ),
       ),
-      home: const OnbodingScreen(),
+      home: const AuthPage(),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+//import 'package:flutter/cupertino.dart';   ---> no se esta usando
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
@@ -32,7 +32,6 @@ class AnimatedBtn extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Icon(CupertinoIcons.arrow_right),
                   const SizedBox(width: 8),
                   Text(
                     "La respuesta",

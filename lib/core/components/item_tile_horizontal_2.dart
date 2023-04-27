@@ -12,14 +12,12 @@ class ItemTileHorizontal extends StatelessWidget {
     required this.imageUrl,
     required this.description,
     required this.cal,
-    required this.price,
   }) : super(key: key);
 
   final String foodName;
   final String imageUrl;
   final String description;
   final String cal;
-  final String price;
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +52,7 @@ class ItemTileHorizontal extends StatelessWidget {
                 const SizedBox(height: 16),
                 Row(
                   children: [
-                    const Text('Precio'),
-                    const Spacer(),
-                    Text('$price Bs',style: const TextStyle(fontWeight: FontWeight.bold,),),
-                    const Spacer(),
+                    
                     const Text('Calificación:'),
                     const Spacer(),
                     Text('$cal/5',style: const TextStyle(fontWeight: FontWeight.bold,),),

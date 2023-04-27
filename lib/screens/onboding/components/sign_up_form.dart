@@ -1,26 +1,28 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-//import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/material.dart';
+//import 'package:flutter_svg/flutter_svg.dart'; --->no se esta usando
 import 'package:rive/rive.dart';
+import 'package:rive_animation/screens/entryPoint/entry_point.dart';
+import 'package:rive_animation/screens/onboding/components/auth_page.dart';
 import 'package:rive_animation/screens/onboding/components/auth_service.dart';
-//import 'package:rive_animation/screens/entryPoint/entry_point.dart';
 import 'package:rive_animation/screens/onboding/components/entry_point_pruebita.dart';
-//import 'package:rive_animation/screens/onboding/components/auth_page.dart';
 
-class SignInForm extends StatefulWidget {
-  const SignInForm({
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<SignInForm> createState() => _SignInFormState();
+  State<SignUpForm> createState() => _SignUpFormState();
 }
 
-class _SignInFormState extends State<SignInForm> {
+class _SignUpFormState extends State<SignUpForm> {
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool isShowLoading = false;
   bool isShowConfetti = false;
@@ -104,36 +106,27 @@ class _SignInFormState extends State<SignInForm> {
     );
   }
 
-  // sign user in method
-  void signUserIn() async {
-    // show loading circle
-    //confetti.fire();
-
-    // try sign in
+  // sign user up method
+  void signUserUp() async {
+    // try creating the user
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-      // ignore: use_build_context_synchronously
-      singSucces(context);
-      // pop the loading circle
-      //Navigator.pop(context);
-    } on FirebaseAuthException catch (e) {
-      //singError(context);
-
-      // WRONG EMAIL
-      if (e.code == 'user-not-found') {
-        showErrorMessage('Correo no encontrado');
-      }
-
-      // WRONG PASSWORD
-      else if (e.code == 'wrong-password') {
-        // show error to user
-        showErrorMessage('Contraseña equivocada');
+      //check if password  is confirmed
+      if (passwordController.text == confirmPasswordController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+        await FirebaseAuth.instance.currentUser
+            ?.updateDisplayName(nameController.text);
+        // ignore: use_build_context_synchronously
+        singSucces(context);
       } else {
-        showErrorMessage(e.code);
+        //las contraseñas son diferented
+        showErrorMessage('Contraseñas diferentes!');
       }
+      // pop the loading circle
+    } on FirebaseAuthException catch (e) {
+      showErrorMessage(e.code);
     }
   }
 
@@ -172,6 +165,33 @@ class _SignInFormState extends State<SignInForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Text(
+                "Nombre:",
+                style: TextStyle(
+                  color: Colors.black54,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8, bottom: 16),
+                child: TextFormField(
+                  controller: nameController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "";
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      child: Icon(
+                        Icons.person,
+                        color: Color.fromRGBO(255, 64, 64, 1),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               const Text(
                 "Correo:",
                 style: TextStyle(
@@ -227,17 +247,39 @@ class _SignInFormState extends State<SignInForm> {
                   ),
                 ),
               ),
+              const Text(
+                "Confirmar contraseña:",
+                style: TextStyle(
+                  color: Colors.black54,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8, bottom: 16),
+                child: TextFormField(
+                  controller: confirmPasswordController,
+                  obscureText: true,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "";
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      child: Icon(
+                        Icons.lock,
+                        color: Color.fromRGBO(255, 64, 64, 1),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 8, bottom: 24),
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    //singIn(context);
-                    //Future.delayed(
-                    //const Duration(seconds: 4),
-                    //() {
-                    signUserIn();
-                    //},
-                    //);
+                    signUserUp();
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(255, 64, 64, 1),
@@ -256,14 +298,14 @@ class _SignInFormState extends State<SignInForm> {
                     color: Color.fromARGB(255, 255, 252, 253),
                   ),
                   label: const Text(
-                    "Iniciar Sesion",
+                    "Registrarse",
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
               ),
               const Center(
                 child: Text(
-                  "Inicia sesion con Google",
+                  "Registrate con Google",
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Color.fromARGB(118, 71, 71, 70)),
                 ),

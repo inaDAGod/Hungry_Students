@@ -7,6 +7,7 @@ import 'package:rive_animation/screens/home/home_page.dart';
 import 'package:rive_animation/utils/rive_utils.dart';
 
 import '../../model/menu.dart';
+import '../home/home_page.dart';
 import 'components/btm_nav_item.dart';
 import 'components/menu_btn.dart';
 import 'components/side_bar.dart';
@@ -66,18 +67,9 @@ class _EntryPointState extends State<EntryPoint>
     return Scaffold(
       extendBody: true,
       resizeToAvoidBottomInset: false,
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: Stack(
         children: [
-          AnimatedPositioned(
-            width: 288,
-            height: MediaQuery.of(context).size.height,
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.fastOutSlowIn,
-            left: isSideBarOpen ? 0 : -288,
-            top: 0,
-            child: const SideBar(),
-          ),
           Transform(
             alignment: Alignment.center,
             transform: Matrix4.identity()
@@ -97,39 +89,6 @@ class _EntryPointState extends State<EntryPoint>
               ),
             ),
           ),
-          AnimatedPositioned(
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.fastOutSlowIn,
-            left: isSideBarOpen ? 220 : 0,
-            top: 16,
-            child: MenuBtn(
-              press: () {
-                isMenuOpenInput.value = !isMenuOpenInput.value;
-
-                if (_animationController.value == 0) {
-                  _animationController.forward();
-                } else {
-                  _animationController.reverse();
-                }
-
-                setState(
-                  () {
-                    isSideBarOpen = !isSideBarOpen;
-                  },
-                );
-              },
-              riveOnInit: (artboard) {
-                final controller = StateMachineController.fromArtboard(
-                    artboard, "State Machine");
-
-                artboard.addController(controller!);
-
-                isMenuOpenInput =
-                    controller.findInput<bool>("isOpen") as SMIBool;
-                isMenuOpenInput.value = true;
-              },
-            ),
-          ),
         ],
       ),
       bottomNavigationBar: Transform.translate(
@@ -140,13 +99,13 @@ class _EntryPointState extends State<EntryPoint>
                 const EdgeInsets.only(left: 12, top: 12, right: 12, bottom: 12),
             margin: const EdgeInsets.symmetric(horizontal: 24),
             decoration: BoxDecoration(
-              color: backgroundColor2.withOpacity(0.8),
+              color: backgroundColor2.withOpacity(0.9),
               borderRadius: const BorderRadius.all(Radius.circular(24)),
               boxShadow: [
                 BoxShadow(
-                  color: backgroundColor2.withOpacity(0.3),
+                  color: backgroundColor2.withOpacity(0.8),
                   offset: const Offset(0, 20),
-                  blurRadius: 100,
+                  blurRadius: 20,
                 ),
               ],
             ),
