@@ -22,7 +22,6 @@ Future<void> main() async {
         'imageUrl':'https://images.ecestaticos.com/DiS5WxaZIGQm4ospyeo7E9Zi5r4=/0x118:2269x1393/1200x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F8b5%2Fc1d%2F016%2F8b5c1d0163f7a26de81530b12e1e3a02.jpg',
         'cal':'3',
       };
-
       // Agrega el dato a la base de datos
       try {
         await database.child('Popular_Restaurants').push().set(data);
@@ -30,8 +29,6 @@ Future<void> main() async {
       } catch (e) {
         print('Error al agregar dato a Firebase Realtime Database: $e');
       }
-
-
 */
   runApp(const MyApp());
 }
