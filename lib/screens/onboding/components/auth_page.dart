@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:rive_animation/screens/onboding/components/entry_point_pruebita.dart';
 import 'package:rive_animation/screens/onboding/onboding_screen.dart';
 
+import '../../RestaurantList/Lista.dart';
+
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
@@ -21,7 +23,7 @@ class AuthPage extends StatelessWidget {
 
           // user is NOT logged in
           else {
-            return const OnbodingScreen(); // ----> cambiar a pagina de sign up (una que pregunte si es cato o restaurante)
+            return const Lista(); // ----> cambiar a pagina de sign up (una que pregunte si es cato o restaurante)
           }
         },
       ),
