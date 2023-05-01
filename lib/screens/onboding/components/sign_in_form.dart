@@ -1,13 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-//import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rive/rive.dart';
-import 'package:rive_animation/screens/onboding/components/auth_service.dart';
-//import 'package:rive_animation/screens/entryPoint/entry_point.dart';
 import 'package:rive_animation/screens/onboding/components/entry_point_pruebita.dart';
-//import 'package:rive_animation/screens/onboding/components/auth_page.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({
@@ -260,29 +255,6 @@ class _SignInFormState extends State<SignInForm> {
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
-              ),
-              const Center(
-                child: Text(
-                  "Inicia sesion con Google",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Color.fromARGB(118, 71, 71, 70)),
-                ),
-              ),
-              const Divider(
-                color: Colors.transparent,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      AuthService().signIntWithGoogle();
-                      singSucces(context);
-                    },
-                    padding: EdgeInsets.zero,
-                    icon: Image.asset('assets/icons/google.png'),
-                  ),
-                ],
               ),
             ],
           ),
