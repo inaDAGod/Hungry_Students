@@ -23,18 +23,18 @@ class _EntryPointState extends State<EntryPoint>
     with SingleTickerProviderStateMixin {
   bool isSideBarOpen = false;
 
-  Menu selectedBottonNav = bottomNavItems.first;
-  Menu selectedSideMenu = sidebarMenus.first;
+  //Menu selectedBottonNav = bottomNavItems.first;
+  // selectedSideMenu = sidebarMenus.first;
 
   late SMIBool isMenuOpenInput;
 
-  void updateSelectedBtmNav(Menu menu) {
+  /*void updateSelectedBtmNav(Menu menu) {
     if (selectedBottonNav != menu) {
       setState(() {
         selectedBottonNav = menu;
       });
     }
-  }
+  }*/
 
   late AnimationController _animationController;
   late Animation<double> scalAnimation;
@@ -109,7 +109,7 @@ class _EntryPointState extends State<EntryPoint>
                 ),
               ],
             ),
-            child: Row(
+            /*child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ...List.generate(
@@ -131,7 +131,7 @@ class _EntryPointState extends State<EntryPoint>
                   },
                 ),
               ],
-            ),
+            ),*/
           ),
         ),
       ),
