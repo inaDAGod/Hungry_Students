@@ -2,37 +2,34 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import 'package:rive_animation/constants.dart';
-import 'package:rive_animation/screens/entryPointAdmin/home/home_page.dart';
-import 'package:rive_animation/utils/rive_utils.dart';
-
 import '../../model/menu.dart';
-//import 'components/btm_nav_item.dart';
 import 'components/menu_btn.dart';
 import 'components/side_bar.dart';
-class EntryPoint extends StatefulWidget {
-  const EntryPoint({super.key});
+import 'home/components/restaurant_products.dart';
+import 'home/entry_page.dart';
+class ProductsPage extends StatefulWidget {
+  const ProductsPage({super.key});
 
   @override
-  State<EntryPoint> createState() => _EntryPointState();
+  State<ProductsPage> createState() => _EntryPointState();
 }
 
-class _EntryPointState extends State<EntryPoint>
+class _EntryPointState extends State<ProductsPage>
     with SingleTickerProviderStateMixin {
   bool isSideBarOpen = false;
 
-  Menu selectedBottonNav = bottomNavItems.first;
-  Menu selectedSideMenu = sidebarMenus.first;
+  //Menu selectedBottonNav = bottomNavItems.first;
+  //Menu selectedSideMenu = sidebarMenus.first;
 
   late SMIBool isMenuOpenInput;
 
-  void updateSelectedBtmNav(Menu menu) {
+  /*void updateSelectedBtmNav(Menu menu) {
     if (selectedBottonNav != menu) {
       setState(() {
         selectedBottonNav = menu;
       });
     }
-  }
+  }*/
 
   late AnimationController _animationController;
   late Animation<double> scalAnimation;
@@ -91,7 +88,8 @@ class _EntryPointState extends State<EntryPoint>
                   borderRadius: BorderRadius.all(
                     Radius.circular(24),
                   ),
-                  child: HomePage(),
+                  //Aqui se cambia el frame
+                  child: RestaurantProducts(),
                 ),
               ),
             ),
@@ -131,50 +129,14 @@ class _EntryPointState extends State<EntryPoint>
           ),
         ],
       ),
-      /*bottomNavigationBar: Transform.translate(
-        offset: Offset(0, 100 * animation.value),
-        child: SafeArea(
-          child: Container(
-            padding:
-                const EdgeInsets.only(left: 12, top: 12, right: 12, bottom: 12),
-            margin: const EdgeInsets.symmetric(horizontal: 24),
-            decoration: BoxDecoration(
-              color: backgroundColor2.withOpacity(0.8),
-              borderRadius: const BorderRadius.all(Radius.circular(24)),
-              boxShadow: [
-                BoxShadow(
-                  color: backgroundColor2.withOpacity(0.3),
-                  offset: const Offset(0, 20),
-                  blurRadius: 100,
-                ),
-              ],
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ...List.generate(
-                  bottomNavItems.length,
-                  (index) {
-                    Menu navBar = bottomNavItems[index];
-                    return BtmNavItem(
-                      navBar: navBar,
-                      press: () {
-                        RiveUtils.chnageSMIBoolState(navBar.rive.status!);
-                        updateSelectedBtmNav(navBar);
-                      },
-                      riveOnInit: (artboard) {
-                        navBar.rive.status = RiveUtils.getRiveInput(artboard,
-                            stateMachineName: navBar.rive.stateMachineName);
-                      },
-                      selectedNav: selectedBottonNav,
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),*/
+    floatingActionButton: FloatingActionButton(
+    onPressed: () {
+      // Acción al presionar el botón
+    },
+    child: const Icon(Icons.add),
+    backgroundColor: Colors.blue,
+  ),
+  floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

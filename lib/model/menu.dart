@@ -3,7 +3,7 @@ import 'rive_model.dart';
 class Menu {
   final String title;
   final RiveModel rive;
-
+  
   Menu({required this.title, required this.rive});
 }
 
@@ -97,16 +97,19 @@ List<Menu> sidebarMenus3 = [
   Menu(
     title: "Inicio",
     rive: RiveModel(
-        src: "assets/RiveAssets/icons.riv",
-        artboard: "HOME",
-        stateMachineName: "HOME_interactivity"),
+      src: "assets/RiveAssets/icons.riv",
+      artboard: "HOME",
+      stateMachineName: "HOME_interactivity",
+    ),
+
   ),
   Menu(
     title: "Restaurante",
     rive: RiveModel(
         src: "assets/RiveAssets/icons.riv",
         artboard: "SEARCH",
-        stateMachineName: "SEARCH_Interactivity"),
+        stateMachineName: "SEARCH_Interactivity"
+        ),
   ),
   Menu(
     title: "Productos",
@@ -120,6 +123,6 @@ List<Menu> sidebarMenus3 = [
     rive: RiveModel(
         src: "assets/RiveAssets/icons.riv",
         artboard: "CHAT",
-        stateMachineName: "CHAT_Interactivity"),
+        stateMachineName: "CHAT_Interactivity"),   
   ),
 ];

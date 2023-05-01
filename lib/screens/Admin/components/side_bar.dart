@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:rive_animation/screens/Admin/entry_point_admin.dart';
+import 'package:rive_animation/screens/Admin/products_page.dart';
 
 import '../../../model/menu.dart';
 import '../../../utils/rive_utils.dart';
+import '../update_info_restaurant.dart';
 import 'info_card.dart';
 import 'side_menu.dart';
 
@@ -54,7 +57,20 @@ class _SideBarState extends State<SideBar> {
                           RiveUtils.chnageSMIBoolState(menu.rive.status!);
                           setState(() {
                             selectedSideMenu = menu;
+                            if(menu.title.toString() == 'Inicio'){
+                              Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => const EntryPointAdmin()));
+                            }
+                            if(menu.title.toString() == 'Restaurante'){
+                              Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => const ActualizarInfoRestaurante()));
+                            }
+                            if(menu.title.toString() == 'Productos'){
+                              Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => const ProductsPage()));
+                            }
                           });
+                          
                         },
                         riveOnInit: (artboard) {
                           menu.rive.status = RiveUtils.getRiveInput(artboard,
@@ -62,32 +78,6 @@ class _SideBarState extends State<SideBar> {
                         },
                       ))
                   .toList(),
-              /*Padding(
-                padding: const EdgeInsets.only(left: 24, top: 40, bottom: 16),
-                child: Text(
-                  "History".toUpperCase(),
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(color: Colors.white70),
-                ),
-              ),
-              ...sidebarMenus2
-                  .map((menu) => SideMenu(
-                        menu: menu,
-                        selectedMenu: selectedSideMenu,
-                        press: () {
-                          RiveUtils.chnageSMIBoolState(menu.rive.status!);
-                          setState(() {
-                            selectedSideMenu = menu;
-                          });
-                        },
-                        riveOnInit: (artboard) {
-                          menu.rive.status = RiveUtils.getRiveInput(artboard,
-                              stateMachineName: menu.rive.stateMachineName);
-                        },
-                      ))
-                  .toList(),*/
             ],
           ),
         ),
