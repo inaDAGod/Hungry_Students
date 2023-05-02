@@ -1,11 +1,11 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_svg/flutter_svg.dart'; --->no se esta usando
 import 'package:rive/rive.dart';
 import 'package:rive_animation/screens/entryPoint/entry_point.dart';
-import 'package:rive_animation/screens/onboding/components/auth_page.dart';
-import 'package:rive_animation/screens/onboding/components/auth_service.dart';
 import 'package:rive_animation/screens/onboding/components/entry_point_pruebita.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -60,6 +60,7 @@ class _SignUpFormState extends State<SignUpForm> {
       const Duration(seconds: 1),
       () {
         success.fire();
+        subirUsuario();
         Future.delayed(
           const Duration(seconds: 2),
           () {
@@ -73,7 +74,7 @@ class _SignUpFormState extends State<SignUpForm> {
               Navigator.pop(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const Pruebita(),
+                  builder: (context) => const EntryPoint(),
                 ),
               );
             });
@@ -118,6 +119,9 @@ class _SignUpFormState extends State<SignUpForm> {
         );
         await FirebaseAuth.instance.currentUser
             ?.updateDisplayName(nameController.text);
+        await FirebaseAuth.instance.currentUser?.updatePhotoURL(
+            "https://i.pinimg.com/170x/3d/27/c1/3d27c1d91548b66bbe4d0610d9515615.jpg");
+
         // ignore: use_build_context_synchronously
         singSucces(context);
       } else {
@@ -154,6 +158,25 @@ class _SignUpFormState extends State<SignUpForm> {
         );
       },
     );
+  }
+
+  Future<void> subirUsuario() async {
+    final user = FirebaseAuth.instance.currentUser!;
+    // ignore: deprecated_member_use
+    final database = FirebaseDatabase.instance.reference();
+    Map<String, dynamic> data = {
+      "name": user.displayName,
+      "correo": user.email,
+      "imageUrl": user.photoURL,
+    };
+    final llave = user.uid;
+    // Agrega el dato a la base de datos
+    try {
+      await database.child('CatoUser').child(llave).set(data);
+      log('Dato agregado a Firebase Realtime Database');
+    } catch (e) {
+      log('Error al agregar dato a Firebase Realtime Database: $e');
+    }
   }
 
   @override
@@ -302,29 +325,6 @@ class _SignUpFormState extends State<SignUpForm> {
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
-              ),
-              const Center(
-                child: Text(
-                  "Registrate con Google",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Color.fromARGB(118, 71, 71, 70)),
-                ),
-              ),
-              const Divider(
-                color: Colors.transparent,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      AuthService().signIntWithGoogle();
-                      singSucces(context);
-                    },
-                    padding: EdgeInsets.zero,
-                    icon: Image.asset('assets/icons/google.png'),
-                  ),
-                ],
               ),
             ],
           ),
