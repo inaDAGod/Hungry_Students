@@ -5,6 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
+import 'package:rive_animation/screens/entryPoint/entry_point.dart';
 import 'package:rive_animation/screens/onboding/components/entry_point_pruebita.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -73,7 +74,7 @@ class _SignUpFormState extends State<SignUpForm> {
               Navigator.pop(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const Pruebita(),
+                  builder: (context) => const EntryPoint(),
                 ),
               );
             });

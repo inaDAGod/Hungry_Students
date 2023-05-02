@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:rive/rive.dart';
+import 'package:rive_animation/screens/onboding/components/auth_page.dart';
 import 'package:rive_animation/screens/onboding/components/entry_point_pruebita.dart';
 
 class SignInForm extends StatefulWidget {
@@ -66,7 +67,7 @@ class _SignInFormState extends State<SignInForm> {
               Navigator.pop(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const Pruebita(),
+                  builder: (context) => const AuthPage(),
                 ),
               );
             });

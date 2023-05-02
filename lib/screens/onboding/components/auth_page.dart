@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:rive_animation/screens/Admin/entry_point_admin.dart';
 import 'package:rive_animation/screens/entryPoint/entry_point.dart';
 import 'package:rive_animation/screens/onboding/components/entry_point_pruebita.dart';
 import 'package:rive_animation/screens/onboding/onboding_screen.dart';
@@ -33,16 +34,16 @@ class AuthPage extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return const OnbodingScreen(); // ----> cambiar a pagina de sign up (una que pregunte si es cato o restaurante)
+            return const OnbodingScreen();
           }
 
           return FutureBuilder<bool>(
             future: esRestaurante(),
             builder: (context, snapshot) {
               if (snapshot.hasData && snapshot.data!) {
-                return const EntryPoint(); //es restaurante
+                return const EntryPointAdmin(); //es restaurante
               } else {
-                return const Pruebita(); //no es restaurante
+                return const EntryPoint(); //no es restaurante
               }
             },
           );
