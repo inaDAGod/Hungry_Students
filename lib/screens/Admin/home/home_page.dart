@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import 'components/home_category_selection.dart';
@@ -16,11 +18,51 @@ import 'package:rive/rive.dart';
 import 'package:rive_animation/screens/Admin/home/entry_page.dart';
 
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late String descripcion="";
+  late String direccion="";
+
+  @override
+  void initState() {
+    super.initState();
+    _loadInfo();
+  }
+  Future<void> _loadInfo() async {
+    final user = FirebaseAuth.instance.currentUser!;
+    final ref = FirebaseDatabase.instance.ref();
+    final snapshot = await ref.child('Restaurantes/${user.uid}').get();
+    if (snapshot.exists) {
+      // ignore: avoid_print
+      setState(() {
+        descripcion = snapshot.child('descripcion').value.toString();
+        direccion =  snapshot.child('direccion').value.toString();
+      });
+    } else {
+      setState(() {
+        descripcion = "Añade descripcion";
+        direccion = "Añade direcion";
+      });
+    }
+  }
+  
+  @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
+    //final ref = FirebaseDatabase.instance.ref();
+    //final snapshot = await ref.child('Restaurantes/${user.uid}').get();
+    TextEditingController nameController= TextEditingController(text: user.displayName);
+    TextEditingController direcController= TextEditingController(text: direccion);
+    TextEditingController descController= TextEditingController(text: descripcion);
+    
   return Padding(
   padding: const EdgeInsets.symmetric(horizontal: 16.0),
   child: Column(
@@ -46,6 +88,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
       TextFormField(
+         controller: nameController,
         validator: (value) {
           if (value!.isEmpty) {
             return "";
@@ -71,6 +114,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
       TextFormField(
+        controller: descController,
         validator: (value) {
           if (value!.isEmpty) {
             return "";
@@ -96,6 +140,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
       TextFormField(
+        controller: direcController,
         validator: (value) {
           if (value!.isEmpty) {
             return "";
