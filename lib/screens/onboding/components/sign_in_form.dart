@@ -102,9 +102,9 @@ class _SignInFormState extends State<SignInForm> {
 
   // sign user in method
   void signUserIn() async {
-    // show loading circle
-    //confetti.fire();
-
+    print(FirebaseAuth.instance.languageCode);
+    await FirebaseAuth.instance.setLanguageCode("es");
+    print(FirebaseAuth.instance.languageCode);
     // try sign in
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -117,12 +117,17 @@ class _SignInFormState extends State<SignInForm> {
       //Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       //singError(context);
-
+      await FirebaseAuth.instance.setLanguageCode("es");
       // WRONG EMAIL
       if (e.code == 'user-not-found') {
         showErrorMessage('Correo no encontrado');
+      } else if (e.code == 'unknown') {
+        // show error to user
+        showErrorMessage('Usuario desconocido');
+      } else if (e.code == 'too-many-requests') {
+        // show error to user
+        showErrorMessage('Muchos intento fallidos');
       }
-
       // WRONG PASSWORD
       else if (e.code == 'wrong-password') {
         // show error to user

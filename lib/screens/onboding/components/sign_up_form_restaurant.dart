@@ -130,7 +130,22 @@ class _SignUpFormResState extends State<SignUpFormRes> {
         showErrorMessage('Contraseñas diferentes!');
       }
     } on FirebaseAuthException catch (e) {
-      showErrorMessage(e.code);
+      if (e.code == 'email-already-in-use') {
+        showErrorMessage('Correo ya en uso');
+      } else if (e.code == 'unknown') {
+        // show error to user
+        showErrorMessage('Usuario desconocido');
+      } else if (e.code == 'too-many-requests') {
+        // show error to user
+        showErrorMessage('Muchos intento fallidos');
+      }
+      // WRONG PASSWORD
+      else if (e.code == 'weak-password') {
+        // show error to user
+        showErrorMessage('Contraseña debil');
+      } else {
+        showErrorMessage(e.code);
+      }
     }
   }
 
