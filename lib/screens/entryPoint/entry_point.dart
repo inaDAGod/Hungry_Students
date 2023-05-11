@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 import 'package:rive_animation/constants.dart';
+import 'package:rive_animation/screens/RestaurantList/Lista.dart';
 import 'package:rive_animation/screens/home/home_page.dart';
 import 'package:rive_animation/utils/rive_utils.dart';
 
@@ -23,18 +24,18 @@ class _EntryPointState extends State<EntryPoint>
     with SingleTickerProviderStateMixin {
   bool isSideBarOpen = false;
 
-  //Menu selectedBottonNav = bottomNavItems.first;
-  // selectedSideMenu = sidebarMenus.first;
+  Menu selectedBottonNav = bottomNavItems.first;
+  Menu selectedSideMenu = sidebarMenus.first;
 
   late SMIBool isMenuOpenInput;
 
-  /*void updateSelectedBtmNav(Menu menu) {
+  void updateSelectedBtmNav(Menu menu) {
     if (selectedBottonNav != menu) {
       setState(() {
         selectedBottonNav = menu;
       });
     }
-  }*/
+  }
 
   late AnimationController _animationController;
   late Animation<double> scalAnimation;
@@ -109,7 +110,7 @@ class _EntryPointState extends State<EntryPoint>
                 ),
               ],
             ),
-            /*child: Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ...List.generate(
@@ -131,7 +132,7 @@ class _EntryPointState extends State<EntryPoint>
                   },
                 ),
               ],
-            ),*/
+            ),
           ),
         ),
       ),

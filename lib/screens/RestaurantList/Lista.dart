@@ -25,7 +25,7 @@ class Lista extends StatelessWidget {
             HomeGreetings(),
             SearchBox(),
             
-            HomeSuggestionSection(),
+            RestaurantProducts(),
             SizedBox(height: 70),
           ],
         ),
