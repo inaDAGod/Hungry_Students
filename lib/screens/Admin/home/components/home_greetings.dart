@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/constants.dart';
@@ -9,6 +10,7 @@ class HomeGreetings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
     return Padding(
       padding: const EdgeInsets.all(AppDefaults.padding),
       child: Center(
@@ -24,7 +26,7 @@ class HomeGreetings extends StatelessWidget {
             ),*/
             const SizedBox(height: 8),
             Text(
-              'Bienvenido, Pipocas Cato',
+              'Bienvenido ${user.displayName}',
               style: Theme.of(context)
                   .textTheme
                   .headline5

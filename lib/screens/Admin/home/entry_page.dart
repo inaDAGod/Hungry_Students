@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 
@@ -9,6 +10,8 @@ import 'components/restaurant_products.dart';
 
 class EntryPage extends StatelessWidget {
   const EntryPage({Key? key}) : super(key: key);
+  
+
 
   @override
   Widget build(BuildContext context) {
