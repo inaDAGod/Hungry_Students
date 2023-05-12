@@ -24,8 +24,9 @@ class ItemTileHorizontal extends StatelessWidget {
     return Material(
       child: InkWell(
         onTap: () {
+        /*
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const FoodDetailsPage()));
+              MaterialPageRoute(builder: (context) => const FoodDetailsPage()));*/
         },
         borderRadius: AppDefaults.borderRadius,
         child: Padding(
