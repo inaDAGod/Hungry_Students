@@ -16,15 +16,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-              bottom: false,
-
+      bottom: false,
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
             HomeGreetings(),
-            SearchBox(),
-            CategorySelection(),
+            //SearchBox(),
+            //CategorySelection(),
             HomeSuggestionSection(),
             SizedBox(height: 16),
             SponsoredResturants(),
