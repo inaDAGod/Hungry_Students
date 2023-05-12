@@ -19,7 +19,7 @@ class RestaurantProducts extends StatelessWidget {
           
           child: StreamBuilder(
 
-            stream: FirebaseDatabase.instance.reference().child('Popular_Restaurants').onValue,
+            stream: FirebaseDatabase.instance.reference().child('Restaurantes').onValue,
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 // Obtiene una lista de Mapas de los datos de Firebase
@@ -35,9 +35,9 @@ class RestaurantProducts extends StatelessWidget {
                   itemTiles.add(
                     ItemTileVertical(
                       foodName: food['name'],
-                      description: food['description'],
+                      description: food['descripcion'],
                       imageUrl: food['imageUrl'],
-                      cal: food['cal'],
+                      cal: food['calificacion'],
                     ),
                   );
                 }

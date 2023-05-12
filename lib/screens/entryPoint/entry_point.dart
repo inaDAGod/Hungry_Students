@@ -5,6 +5,7 @@ import 'package:rive/rive.dart';
 import 'package:rive_animation/constants.dart';
 import 'package:rive_animation/screens/RestaurantList/Lista.dart';
 import 'package:rive_animation/screens/home/home_page.dart';
+import 'package:rive_animation/screens/infoUsuario/informacionUsuario.dart';
 import 'package:rive_animation/utils/rive_utils.dart';
 
 import '../../model/menu.dart';
@@ -26,16 +27,26 @@ class _EntryPointState extends State<EntryPoint>
 
   Menu selectedBottonNav = bottomNavItems.first;
   Menu selectedSideMenu = sidebarMenus.first;
-
+List<Widget> pages = [
+  HomePage(),
+  Lista(),
+  Lista(),
+  Lista(),
+  ProfilePage(),
+  Lista(),
+  // Agregue otras páginas aquí según sea necesario
+];
+int Pageindex=0;
   late SMIBool isMenuOpenInput;
 
-  void updateSelectedBtmNav(Menu menu) {
-    if (selectedBottonNav != menu) {
-      setState(() {
-        selectedBottonNav = menu;
-      });
-    }
+  void updateSelectedBtmNav(Menu menu, int index) {
+  if (selectedBottonNav != menu) {
+    setState(() {
+      selectedBottonNav = menu;
+      Pageindex = index;
+    });
   }
+}
 
   late AnimationController _animationController;
   late Animation<double> scalAnimation;
@@ -81,11 +92,12 @@ class _EntryPointState extends State<EntryPoint>
               offset: Offset(animation.value * 265, 0),
               child: Transform.scale(
                 scale: scalAnimation.value,
-                child: const ClipRRect(
+                child:  ClipRRect(
                   borderRadius: BorderRadius.all(
                     Radius.circular(24),
                   ),
-                  child: HomePage(),
+        child: pages[Pageindex],
+                  // pages[
                 ),
               ),
             ),
@@ -117,18 +129,18 @@ class _EntryPointState extends State<EntryPoint>
                   bottomNavItems.length,
                   (index) {
                     Menu navBar = bottomNavItems[index];
-                    return BtmNavItem(
-                      navBar: navBar,
-                      press: () {
-                        RiveUtils.chnageSMIBoolState(navBar.rive.status!);
-                        updateSelectedBtmNav(navBar);
-                      },
-                      riveOnInit: (artboard) {
-                        navBar.rive.status = RiveUtils.getRiveInput(artboard,
-                            stateMachineName: navBar.rive.stateMachineName);
-                      },
-                      selectedNav: selectedBottonNav,
-                    );
+                    return  BtmNavItem(
+                    navBar: navBar,
+                    press: () {
+                      RiveUtils.chnageSMIBoolState(navBar.rive.status!);
+                      updateSelectedBtmNav(navBar, index);
+                    },
+                    riveOnInit: (artboard) {
+                      navBar.rive.status = RiveUtils.getRiveInput(artboard,
+                          stateMachineName: navBar.rive.stateMachineName);
+                    },
+                    selectedNav: selectedBottonNav,
+                  );
                   },
                 ),
               ],
