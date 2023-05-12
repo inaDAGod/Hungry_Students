@@ -119,10 +119,10 @@ List<Menu> sidebarMenus3 = [
         stateMachineName: "STAR_Interactivity"),
   ),
   Menu(
-    title: "Ventas",
+    title: "Cerrar sesión",
     rive: RiveModel(
         src: "assets/RiveAssets/icons.riv",
-        artboard: "CHAT",
-        stateMachineName: "CHAT_Interactivity"),   
+        artboard: "USER",
+        stateMachineName: "USER_Interactivity"),   
   ),
 ];

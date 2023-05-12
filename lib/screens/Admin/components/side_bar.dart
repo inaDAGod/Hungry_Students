@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:rive_animation/screens/Admin/entry_point_admin.dart';
 import 'package:rive_animation/screens/Admin/products_page.dart';
@@ -68,6 +69,11 @@ class _SideBarState extends State<SideBar> {
                             if(menu.title.toString() == 'Productos'){
                               Navigator.push(context,
                               MaterialPageRoute(builder: (context) => const ProductsPage()));
+                            }
+                            if(menu.title.toString() == 'Cerrar sesión'){
+                              FirebaseAuth.instance.signOut();
+                              /*Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => const ProductsPage()));*/
                             }
                           });
                           
