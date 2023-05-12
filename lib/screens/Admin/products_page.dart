@@ -2,11 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
+import 'package:rive_animation/screens/Admin/home/food_form_page.dart';
 import '../../model/menu.dart';
 import 'components/menu_btn.dart';
 import 'components/side_bar.dart';
 import 'home/components/restaurant_products.dart';
 import 'home/entry_page.dart';
+
 class ProductsPage extends StatefulWidget {
   const ProductsPage({super.key});
 
@@ -129,14 +131,17 @@ class _EntryPointState extends State<ProductsPage>
           ),
         ],
       ),
-    floatingActionButton: FloatingActionButton(
-    onPressed: () {
-      // Acción al presionar el botón
-    },
-    child: const Icon(Icons.add),
-    backgroundColor: Colors.blue,
-  ),
-  floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const FoodPage()),
+          );
+        },
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.blue,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
