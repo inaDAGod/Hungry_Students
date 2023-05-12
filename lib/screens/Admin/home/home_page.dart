@@ -17,7 +17,6 @@ import 'package:rive/rive.dart';
 //import 'package:rive_animation/screens/entryPoint/entry_point.dart';
 import 'package:rive_animation/screens/Admin/home/entry_page.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({
     Key? key,
@@ -28,14 +27,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late String descripcion="";
-  late String direccion="";
+  late String descripcion = "";
+  late String direccion = "";
+  late String urlimagen = "";
 
   @override
   void initState() {
     super.initState();
     _loadInfo();
   }
+
   Future<void> _loadInfo() async {
     final user = FirebaseAuth.instance.currentUser!;
     final ref = FirebaseDatabase.instance.ref();
@@ -44,149 +45,214 @@ class _HomePageState extends State<HomePage> {
       // ignore: avoid_print
       setState(() {
         descripcion = snapshot.child('descripcion').value.toString();
-        direccion =  snapshot.child('direccion').value.toString();
+        direccion = snapshot.child('direccion').value.toString();
+        urlimagen = snapshot.child('imageUrl').value.toString();
       });
     } else {
       setState(() {
         descripcion = "Añade descripcion";
         direccion = "Añade direcion";
+        urlimagen = "Añade tu enlace";
       });
     }
   }
-  
+
+  void actualizarDatos(String nameController, String direcController,
+      String descController, String urlController) {
+    // Obtén una referencia a la entidad que deseas actualizar
+    final user = FirebaseAuth.instance.currentUser!;
+    DatabaseReference ref =
+        FirebaseDatabase.instance.ref().child('Restaurantes').child(user.uid);
+
+    // Crea un mapa con los atributos que deseas actualizar
+    Map<String, dynamic> actualizaciones = {
+      'name': nameController,
+      'descripcion': descController,
+      'direccion': direcController,
+      'imageUrl': urlController,
+    };
+
+    // Actualiza solo los atributos especificados en el mapa
+    ref.update(actualizaciones);
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
     //final ref = FirebaseDatabase.instance.ref();
     //final snapshot = await ref.child('Restaurantes/${user.uid}').get();
-    TextEditingController nameController= TextEditingController(text: user.displayName);
-    TextEditingController direcController= TextEditingController(text: direccion);
-    TextEditingController descController= TextEditingController(text: descripcion);
-    
-  return Padding(
-  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children:  [
-      const SizedBox(height: 100),
-      const Text(
-        "       Información Restaurante",textAlign: TextAlign.center,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          color: Color.fromARGB(255,255,64,77),
-          fontSize: 25,
-        ),
-        
-      ),
+    TextEditingController nameController =
+        TextEditingController(text: user.displayName);
+    TextEditingController direcController =
+        TextEditingController(text: direccion);
+    TextEditingController descController =
+        TextEditingController(text: descripcion);
+    TextEditingController urlController =
+        TextEditingController(text: urlimagen);
 
-      const SizedBox(height: 10),
-      const Text(
-        "Nombre:",
-        style: TextStyle(
-          color: Colors.black54,
-        ),
-      ),
-      TextFormField(
-         controller: nameController,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return "";
-          }
-          return null;
-        },
-        decoration: const InputDecoration(
-          prefixIcon: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8),
-            child: Icon(
-              Icons.face,
-              color: Color.fromRGBO(255, 64, 64, 1),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const SizedBox(height: 100),
+          const Text(
+            "       Información Restaurante",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 255, 64, 77),
+              fontSize: 25,
             ),
           ),
-        ),
-      ),
-
-      const SizedBox(height: 10),
-      const Text(
-        "Descripcion:",
-        style: TextStyle(
-          color: Colors.black54,
-        ),
-      ),
-      TextFormField(
-        controller: descController,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return "";
-          }
-          return null;
-        },
-        decoration: const InputDecoration(
-          prefixIcon: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8),
-            child: Icon(
-              Icons.article,
-              color: Color.fromRGBO(255, 64, 64, 1),
+          const SizedBox(height: 10),
+          const Text(
+            "Nombre:",
+            style: TextStyle(
+              color: Colors.black54,
             ),
           ),
-        ),
-      ),
-
-      const SizedBox(height: 10),
-      const Text(
-        "Dirección:",
-        style: TextStyle(
-          color: Colors.black54,
-        ),
-      ),
-      TextFormField(
-        controller: direcController,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return "";
-          }
-          return null;
-        },
-        decoration: const InputDecoration(
-          prefixIcon: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8),
-            child: Icon(
-              Icons.store,
-              color: Color.fromRGBO(255, 64, 64, 1),
+          TextFormField(
+            controller: nameController,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "";
+              }
+              return null;
+            },
+            decoration: const InputDecoration(
+              prefixIcon: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Icon(
+                  Icons.restaurant,
+                  color: Color.fromRGBO(255, 64, 64, 1),
+                ),
+              ),
             ),
           ),
-        ),
-      ),
-
-      const SizedBox(height: 10),
-      ElevatedButton.icon(
-        onPressed: () {
-          //singIn(context);
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: const Color.fromRGBO(255, 64, 64, 1),
-          minimumSize: const Size(double.infinity, 56),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25),
-              topRight: Radius.circular(25),
-              bottomRight: Radius.circular(25),
-              bottomLeft: Radius.circular(25),
+          const SizedBox(height: 10),
+          const Text(
+            "Descripcion:",
+            style: TextStyle(
+              color: Colors.black54,
             ),
           ),
-        ),
-        icon: const Icon(
-          CupertinoIcons.arrow_right,
-          color: Color.fromARGB(255, 255, 252, 253),
-        ),
-        label: const Text(
-          "Actualizar",
-          style: TextStyle(fontSize: 16),
-        ),
-      ),
-    ],
-  ),
-);
+          TextFormField(
+            controller: descController,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "";
+              }
+              return null;
+            },
+            decoration: const InputDecoration(
+              prefixIcon: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Icon(
+                  Icons.article,
+                  color: Color.fromRGBO(255, 64, 64, 1),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          const Text(
+            "Dirección:",
+            style: TextStyle(
+              color: Colors.black54,
+            ),
+          ),
+          TextFormField(
+            controller: direcController,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "";
+              }
+              return null;
+            },
+            decoration: const InputDecoration(
+              prefixIcon: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Icon(
+                  Icons.store,
+                  color: Color.fromRGBO(255, 64, 64, 1),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          const Text(
+            "Imagen Restaurante url:",
+            style: TextStyle(
+              color: Colors.black54,
+            ),
+          ),
+          TextFormField(
+            controller: urlController,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "";
+              }
+              return null;
+            },
+            decoration: const InputDecoration(
+              prefixIcon: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Icon(
+                  Icons.image,
+                  color: Color.fromRGBO(255, 64, 64, 1),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          ElevatedButton.icon(
+            onPressed: () {
+              actualizarDatos(nameController.text, direcController.text,
+                  descController.text, urlController.text);
 
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return const AlertDialog(
+                    backgroundColor: Color.fromARGB(248, 255, 75, 90),
+                    title: Center(
+                      child: Text(
+                        'Se actualizaron tus datos correctamente',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  );
+                },
+              );
+              Future.delayed(const Duration(milliseconds: 1036), () {
+                Navigator.pop(context);
+              });
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color.fromRGBO(255, 64, 64, 1),
+              minimumSize: const Size(double.infinity, 56),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25),
+                  topRight: Radius.circular(25),
+                  bottomRight: Radius.circular(25),
+                  bottomLeft: Radius.circular(25),
+                ),
+              ),
+            ),
+            icon: const Icon(
+              CupertinoIcons.arrow_right,
+              color: Color.fromARGB(255, 255, 252, 253),
+            ),
+            label: const Text(
+              "Actualizar",
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

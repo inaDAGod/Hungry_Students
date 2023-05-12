@@ -18,7 +18,8 @@ class EntryPage extends StatefulWidget {
 }
 
 class _EntryPage extends State<EntryPage> {
-  late String fotoRestaurante="";
+  late String fotoRestaurante =
+      "https://thumbs.dreamstime.com/z/icono-de-carga-color-aislado-en-fondo-blanco-barra-progreso-formas-din%C3%A1micas-aleatorias-gradiente-vector-ilustraci%C3%B3n-vectorial-181540424.jpg";
 
   @override
   void initState() {
@@ -40,7 +41,8 @@ class _EntryPage extends State<EntryPage> {
     } else {
       log("esta14");
       setState(() {
-        fotoRestaurante = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBAWjyd4WkkzS9hZJQjorMkmoUhh_6e-7mxg&usqp=CAU";
+        fotoRestaurante =
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBAWjyd4WkkzS9hZJQjorMkmoUhh_6e-7mxg&usqp=CAU";
       });
     }
   }
