@@ -46,7 +46,7 @@ class RestaurantProducts extends StatelessWidget {
                 .child('Comidas/${user.uid}')
                 .onValue,
             builder: (context, AsyncSnapshot snapshot) {
-              if (snapshot.hasData) {
+              if (snapshot.hasData && snapshot.data!.snapshot.value != null) {
                 // Obtiene una lista de Mapas de los datos de Firebase
                 List<Map<dynamic, dynamic>> foodsList = [];
                 Map<dynamic, dynamic> foods = snapshot.data!.snapshot.value;
@@ -73,7 +73,7 @@ class RestaurantProducts extends StatelessWidget {
               } else if (snapshot.hasError) {
                 return Text('Error al obtener datos de Firebase');
               } else {
-                return CircularProgressIndicator();
+                return Text('no tienes platillos');
               }
             },
           ),

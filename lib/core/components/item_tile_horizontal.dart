@@ -58,10 +58,11 @@ class ItemTileHorizontal extends StatelessWidget {
                     const Spacer(),
                     Text('$price Bs',style: const TextStyle(fontWeight: FontWeight.bold,),),
                     const Spacer(),
+                    /*
                     const Text('Calificación:'),
                     const Spacer(),
                     Text('$cal/5',style: const TextStyle(fontWeight: FontWeight.bold,),),
-                    const Spacer(),
+                    const Spacer(),*/
                     
                   ],
                 )
