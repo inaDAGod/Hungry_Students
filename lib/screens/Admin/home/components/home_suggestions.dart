@@ -18,18 +18,11 @@ class HomeSuggestionSection extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                'Suggestions for you ',
+                'Algunos de tus productos son: ',
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge
                     ?.copyWith(fontWeight: FontWeight.bold),
-              ),
-              Text(
-                '(Japanese Food)',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge
-                    ?.copyWith(color: Colors.grey),
               ),
             ],
           ),
@@ -37,7 +30,10 @@ class HomeSuggestionSection extends StatelessWidget {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: StreamBuilder(
-            stream: FirebaseDatabase.instance.reference().child('Popular_Dishes').onValue,
+            stream: FirebaseDatabase.instance
+                .reference()
+                .child('Popular_Dishes')
+                .onValue,
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 // Obtiene una lista de Mapas de los datos de Firebase
