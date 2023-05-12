@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
   late String descripcion = "";
   late String direccion = "";
   late String urlimagen = "";
+  late String correo = "";
 
   @override
   void initState() {
@@ -47,18 +48,20 @@ class _HomePageState extends State<HomePage> {
         descripcion = snapshot.child('descripcion').value.toString();
         direccion = snapshot.child('direccion').value.toString();
         urlimagen = snapshot.child('imageUrl').value.toString();
+        correo = snapshot.child('correo').value.toString();
       });
     } else {
       setState(() {
         descripcion = "Añade descripcion";
         direccion = "Añade direcion";
         urlimagen = "Añade tu enlace";
+        correo = "Añade correo";
       });
     }
   }
 
   void actualizarDatos(String nameController, String direcController,
-      String descController, String urlController) {
+      String descController, String urlController, String correoController) {
     // Obtén una referencia a la entidad que deseas actualizar
     final user = FirebaseAuth.instance.currentUser!;
     DatabaseReference ref =
@@ -70,10 +73,14 @@ class _HomePageState extends State<HomePage> {
       'descripcion': descController,
       'direccion': direcController,
       'imageUrl': urlController,
+      'correo': correoController,
     };
 
     // Actualiza solo los atributos especificados en el mapa
     ref.update(actualizaciones);
+    user.updateDisplayName(nameController);
+    user.updateEmail(correoController);
+    user.updatePhotoURL(urlController);
   }
 
   @override
@@ -89,6 +96,8 @@ class _HomePageState extends State<HomePage> {
         TextEditingController(text: descripcion);
     TextEditingController urlController =
         TextEditingController(text: urlimagen);
+    TextEditingController correoController =
+        TextEditingController(text: correo);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -126,6 +135,31 @@ class _HomePageState extends State<HomePage> {
                 padding: EdgeInsets.symmetric(horizontal: 8),
                 child: Icon(
                   Icons.restaurant,
+                  color: Color.fromRGBO(255, 64, 64, 1),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          const Text(
+            "Correo:",
+            style: TextStyle(
+              color: Colors.black54,
+            ),
+          ),
+          TextFormField(
+            controller: correoController,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "";
+              }
+              return null;
+            },
+            decoration: const InputDecoration(
+              prefixIcon: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Icon(
+                  Icons.email_rounded,
                   color: Color.fromRGBO(255, 64, 64, 1),
                 ),
               ),
@@ -209,8 +243,12 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 10),
           ElevatedButton.icon(
             onPressed: () {
-              actualizarDatos(nameController.text, direcController.text,
-                  descController.text, urlController.text);
+              actualizarDatos(
+                  nameController.text,
+                  direcController.text,
+                  descController.text,
+                  urlController.text,
+                  correoController.text);
 
               showDialog(
                 context: context,
