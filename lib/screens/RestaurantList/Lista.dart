@@ -11,6 +11,7 @@ import 'components/home_suggestions_restaurants.dart';
 
 import 'components/sponsored_resturants.dart';
 import '../../core/components/search_box.dart';
+
 class Lista extends StatelessWidget {
   const Lista({Key? key}) : super(key: key);
 
@@ -25,6 +26,7 @@ class Lista extends StatelessWidget {
             children: const [
               HomeGreetings(),
               SearchBox(),
+              SizedBox(height: 10),
               RestaurantProducts(),
               SizedBox(height: 70),
             ],

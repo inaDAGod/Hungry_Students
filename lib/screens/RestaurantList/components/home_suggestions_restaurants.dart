@@ -13,13 +13,13 @@ class RestaurantProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-
         SingleChildScrollView(
           scrollDirection: Axis.vertical,
-          
           child: StreamBuilder(
-
-            stream: FirebaseDatabase.instance.reference().child('Restaurantes').onValue,
+            stream: FirebaseDatabase.instance
+                .reference()
+                .child('Restaurantes')
+                .onValue,
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 // Obtiene una lista de Mapas de los datos de Firebase
@@ -28,7 +28,7 @@ class RestaurantProducts extends StatelessWidget {
                 foods.forEach((key, value) {
                   foodsList.add(value);
                 });
-                
+
                 // Crea una lista de ItemTileHorizontal a partir de los datos de Firebase
                 List<ItemTileVertical> itemTiles = [];
                 for (var food in foodsList) {
@@ -38,6 +38,7 @@ class RestaurantProducts extends StatelessWidget {
                       description: food['descripcion'],
                       imageUrl: food['imageUrl'],
                       cal: food['calificacion'],
+                      dire: food['direccion'],
                     ),
                   );
                 }
@@ -46,12 +47,11 @@ class RestaurantProducts extends StatelessWidget {
                   children: itemTiles,
                 );
               } else if (snapshot.hasError) {
-                return Text('Error al obtener datos de Firebase');
+                return const Text('Error al obtener datos de Firebase');
               } else {
                 return CircularProgressIndicator();
               }
             },
-            
           ),
         ),
       ],
