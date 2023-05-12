@@ -18,8 +18,11 @@ class SideBar extends StatefulWidget {
 
 class _SideBarState extends State<SideBar> {
   Menu selectedSideMenu = sidebarMenus.first;
+  final user = FirebaseAuth.instance.currentUser!;
+
   @override
   Widget build(BuildContext context) {
+        
     return SafeArea(
       child: Container(
         width: 288,
@@ -37,8 +40,8 @@ class _SideBarState extends State<SideBar> {
             children: [
               const InfoCard(
                 //debemos pasarle un nombre por bd
-                name: "Pipocas Cato",
-                bio: "Administradora",
+                name: "Administrador",
+                bio: "",
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 24, top: 32, bottom: 16),
