@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:rive_animation/core/components/item_tile_vertical.dart';
 
@@ -12,6 +13,7 @@ class RestaurantProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
     return Column(
       children: [
         Padding(
@@ -21,12 +23,10 @@ class RestaurantProducts extends StatelessWidget {
               SizedBox(height: 75),
               Text(
                 'Tus productos son',
-                style: 
-                    Theme.of(context)
-                    .textTheme
-                    .bodyLarge
-                    ?.copyWith(fontWeight: FontWeight.bold, color: Color.fromARGB(255,255,64,77), fontSize: 25),
-                    
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 255, 64, 77),
+                    fontSize: 25),
               ),
               /*Text(
                 '(Japanese Food)',
@@ -41,7 +41,10 @@ class RestaurantProducts extends StatelessWidget {
         SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: StreamBuilder(
-            stream: FirebaseDatabase.instance.reference().child('Popular_Dishes').onValue,
+            stream: FirebaseDatabase.instance
+                .ref()
+                .child('Comidas/${user.uid}')
+                .onValue,
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 // Obtiene una lista de Mapas de los datos de Firebase
@@ -57,10 +60,9 @@ class RestaurantProducts extends StatelessWidget {
                   itemTiles.add(
                     ItemTileVertical(
                       foodName: food['name'],
-                      description: food['description'],
+                      description: food['descripcion'],
                       imageUrl: food['imageUrl'],
-                      price: food['price'],
-                      cal: food['cal'],
+                      price: food['precio'],
                     ),
                   );
                 }
@@ -74,7 +76,6 @@ class RestaurantProducts extends StatelessWidget {
                 return CircularProgressIndicator();
               }
             },
-            
           ),
         ),
       ],
