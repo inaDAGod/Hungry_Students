@@ -66,15 +66,7 @@ class _EntryPage extends State<EntryPage> {
               SizedBox(height: 10),
               HomeInfo(),
               SizedBox(height: 10),
-              const Text(
-                'Algunos de tus productos son: ',
-                style: TextStyle(
-                  fontStyle: FontStyle.italic,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 255, 64, 77),
-                ),
-              ),
-              HomeSuggestionSection()
+              HomeSuggestionSection() //comidas del restaurante
             ],
           ),
         ),
