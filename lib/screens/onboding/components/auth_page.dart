@@ -1,15 +1,31 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:rive_animation/screens/Admin/entry_point_admin.dart';
 import 'package:rive_animation/screens/entryPoint/entry_point.dart';
-import 'package:rive_animation/screens/home/home_page.dart';
-//import 'package:rive_animation/screens/entryPoint/entry_point.dart';
 import 'package:rive_animation/screens/onboding/components/entry_point_pruebita.dart';
 import 'package:rive_animation/screens/onboding/onboding_screen.dart';
 
-import '../../RestaurantList/Lista.dart';
-
 class AuthPage extends StatelessWidget {
-  const AuthPage({super.key});
+  // ignore: use_key_in_widget_constructors
+  const AuthPage({Key? key});
+
+  Future<bool> esRestaurante() async {
+    final user = FirebaseAuth.instance.currentUser!;
+    final ref = FirebaseDatabase.instance.ref();
+    final snapshot = await ref.child('Restaurantes/${user.uid}').get();
+    if (snapshot.exists) {
+      log("esta");
+      // ignore: avoid_print
+      print(snapshot.value);
+      return true;
+    } else {
+      log('No esta');
+      return false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,16 +33,20 @@ class AuthPage extends StatelessWidget {
       body: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          // user is logged in
-          if (snapshot.hasData) {
-            //Direcciona a la pagina despues de inicio de sesion
-            return const EntryPoint();
+          if (!snapshot.hasData) {
+            return const OnbodingScreen();
           }
 
-          // user is NOT logged in
-          else {
-            return const EntryPoint(); // ----> cambiar a pagina de sign up (una que pregunte si es cato o restaurante)
-          }
+          return FutureBuilder<bool>(
+            future: esRestaurante(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData && snapshot.data!) {
+                return const EntryPointAdmin(); //es restaurante
+              } else {
+                return const EntryPoint(); //no es restaurante
+              }
+            },
+          );
         },
       ),
     );

@@ -16,7 +16,7 @@ void showCustomDialogUpRes(BuildContext context,
     pageBuilder: (_, __, ___) {
       return Center(
         child: Container(
-          height: 700,
+          height: 600,
           margin: const EdgeInsets.symmetric(horizontal: 16),
           padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
           decoration: BoxDecoration(

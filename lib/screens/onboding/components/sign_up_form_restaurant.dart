@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_svg/flutter_svg.dart'; --->no se esta usando
 import 'package:rive/rive.dart';
+import 'package:rive_animation/screens/Admin/entry_point_admin.dart';
 import 'package:rive_animation/screens/entryPoint/entry_point.dart';
 import 'package:rive_animation/screens/onboding/components/auth_service.dart';
 
@@ -56,6 +60,7 @@ class _SignUpFormResState extends State<SignUpFormRes> {
     Future.delayed(
       const Duration(seconds: 1),
       () {
+        subirRestaurante();
         success.fire();
         Future.delayed(
           const Duration(seconds: 2),
@@ -71,7 +76,7 @@ class _SignUpFormResState extends State<SignUpFormRes> {
                 context,
                 MaterialPageRoute(
                   builder: (context) =>
-                      const EntryPoint(), //--camabiar a la pagina para administradores
+                      const EntryPointAdmin(), //--camabiar a la pagina para administradores
                 ),
               );
             });
@@ -108,14 +113,22 @@ class _SignUpFormResState extends State<SignUpFormRes> {
   void signRestaurantUp() async {
     // try sign up
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-      await FirebaseAuth.instance.currentUser
-          ?.updateDisplayName(nameController.text);
-      // ignore: use_build_context_synchronously
-      singSucces(context);
+      if (passwordController.text == confirmPasswordController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+        await FirebaseAuth.instance.currentUser
+            ?.updateDisplayName(nameController.text);
+        await FirebaseAuth.instance.currentUser?.updatePhotoURL(
+            "https://i.pinimg.com/170x/3d/27/c1/3d27c1d91548b66bbe4d0610d9515615.jpg");
+
+        // ignore: use_build_context_synchronously
+        singSucces(context);
+      } else {
+        //las contraseñas son diferented
+        showErrorMessage('Contraseñas diferentes!');
+      }
     } on FirebaseAuthException catch (e) {
       showErrorMessage(e.code);
     }
@@ -145,6 +158,26 @@ class _SignUpFormResState extends State<SignUpFormRes> {
         );
       },
     );
+  }
+
+  Future<void> subirRestaurante() async {
+    final user = FirebaseAuth.instance.currentUser!;
+    final database = FirebaseDatabase.instance.ref();
+    Map<String, dynamic> data = {
+      "name": user.displayName,
+      "correo": user.email,
+      "imageUrl": user.photoURL,
+      "direccion": "",
+      "descripcion": "",
+    };
+    final llave = user.uid;
+    // Agrega el dato a la base de datos
+    try {
+      await database.child('Restaurantes').child(llave).set(data);
+      log('Restaurante agregado a Firebase Realtime Database');
+    } catch (e) {
+      log('Error al agregar restaurante a Firebase Realtime Database: $e');
+    }
   }
 
   @override
@@ -239,7 +272,7 @@ class _SignUpFormResState extends State<SignUpFormRes> {
                 ),
               ),
               const Text(
-                "Pin de verificacion:",
+                "Confirmar contraseña:",
                 style: TextStyle(
                   color: Colors.black54,
                 ),
@@ -247,6 +280,8 @@ class _SignUpFormResState extends State<SignUpFormRes> {
               Padding(
                 padding: const EdgeInsets.only(top: 8, bottom: 16),
                 child: TextFormField(
+                  controller: confirmPasswordController,
+                  obscureText: true,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "";
@@ -257,7 +292,7 @@ class _SignUpFormResState extends State<SignUpFormRes> {
                     prefixIcon: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 8),
                       child: Icon(
-                        Icons.verified_user,
+                        Icons.lock,
                         color: Color.fromRGBO(255, 64, 64, 1),
                       ),
                     ),
@@ -291,29 +326,6 @@ class _SignUpFormResState extends State<SignUpFormRes> {
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
-              ),
-              const Center(
-                child: Text(
-                  "Registrate con Google",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Color.fromARGB(118, 71, 71, 70)),
-                ),
-              ),
-              const Divider(
-                color: Colors.transparent,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      AuthService().signIntWithGoogle();
-                      singSucces(context);
-                    },
-                    padding: EdgeInsets.zero,
-                    icon: Image.asset('assets/icons/google.png'),
-                  ),
-                ],
               ),
             ],
           ),
