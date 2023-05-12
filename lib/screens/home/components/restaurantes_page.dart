@@ -71,11 +71,17 @@ class _RestaurantesPageState extends State<RestaurantesPage> {
           Expanded(
             child: Container(
               padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: Colors.grey[200],
+              ),
+              margin: const EdgeInsets.all(16),
+              height: MediaQuery.of(context).size.height * 0.4,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    children: [
+                    children: const [
                       Icon(Icons.note_alt_outlined),
                       Text(
                         'Descripcion',
@@ -85,7 +91,7 @@ class _RestaurantesPageState extends State<RestaurantesPage> {
                   ),
                   const SizedBox(height: 16),
                   Padding(
-                    padding: EdgeInsets.only(left: 30),
+                    padding: const EdgeInsets.only(left: 30),
                     child: Text(
                       widget.descripcion,
                       style: const TextStyle(
@@ -95,7 +101,7 @@ class _RestaurantesPageState extends State<RestaurantesPage> {
                   ),
                   const SizedBox(height: 16),
                   Row(
-                    children: [
+                    children: const [
                       Icon(Icons.house),
                       Text(
                         'Direccion',
@@ -105,7 +111,7 @@ class _RestaurantesPageState extends State<RestaurantesPage> {
                   ),
                   const SizedBox(height: 16),
                   Padding(
-                    padding: EdgeInsets.only(left: 30),
+                    padding: const EdgeInsets.only(left: 30),
                     child: Text(
                       widget.direccion,
                       style: const TextStyle(
@@ -136,7 +142,7 @@ class _RestaurantesPageState extends State<RestaurantesPage> {
                   Container(
                     alignment: Alignment.center,
                     child: IconButton(
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_circle_up_outlined,
                         size: 40,
                         color: Colors.red,
@@ -166,14 +172,16 @@ class _RestaurantesPageState extends State<RestaurantesPage> {
                       },
                     ),
                   ),
+                  Container(
+                    alignment: Alignment.center,
+                    child: const Text(
+                      "Calificar",
+                      style: TextStyle(
+                          fontSize: 15, color: Color.fromARGB(255, 90, 37, 34)),
+                    ),
+                  ),
                 ],
               ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: Colors.grey[200],
-              ),
-              margin: const EdgeInsets.all(16),
-              height: MediaQuery.of(context).size.height * 0.4,
             ),
           ),
         ],

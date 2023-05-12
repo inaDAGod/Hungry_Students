@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:rive_animation/screens/home/components/restaurantes_page.dart';
 import '../../screens/food_details/food_details.dart';
 
 import '../constants/constants.dart';
@@ -12,12 +13,14 @@ class ItemTileVertical extends StatelessWidget {
     required this.imageUrl,
     required this.description,
     required this.cal,
+    required this.dire,
   }) : super(key: key);
 
   final String foodName;
   final String imageUrl;
   final String description;
   final String cal;
+  final String dire;
 
   @override
   Widget build(BuildContext context) {
@@ -25,19 +28,26 @@ class ItemTileVertical extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const FoodDetailsPage()));
+            context,
+            MaterialPageRoute(
+              builder: (context) => RestaurantesPage(
+                  nombre: foodName,
+                  imageUrl: imageUrl,
+                  descripcion: description,
+                  direccion: dire,
+                  calificacion: cal),
+            ),
+          );
         },
         borderRadius: AppDefaults.borderRadius,
         child: Container(
           margin: const EdgeInsets.only(bottom: 16),
           decoration: BoxDecoration(
             borderRadius: AppDefaults.borderRadius,
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
               colors: [
-                const Color(0xFF62B9BF),
-                const Color(0xFF7BC5C6),
+                Color.fromARGB(255, 240, 142, 142),
+                Color(0xFF7BC5C6),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -55,7 +65,6 @@ class ItemTileVertical extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Expanded(
                   flex: 1,
                   child: AspectRatio(
@@ -67,16 +76,11 @@ class ItemTileVertical extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 16),
-
                 Expanded(
                   flex: 2,
-                  
                   child: Column(
-                    
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    
                     children: [
-                      
                       Text(
                         foodName,
                         style: Theme.of(context)
