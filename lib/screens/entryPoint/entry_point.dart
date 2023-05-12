@@ -6,6 +6,7 @@ import 'package:rive_animation/constants.dart';
 import 'package:rive_animation/screens/RestaurantList/Lista.dart';
 import 'package:rive_animation/screens/home/home_page.dart';
 import 'package:rive_animation/screens/infoUsuario/informacionUsuario.dart';
+import 'package:rive_animation/screens/recomendations/PaginaRecomendaciones.dart';
 import 'package:rive_animation/utils/rive_utils.dart';
 
 import '../../model/menu.dart';
@@ -30,7 +31,7 @@ class _EntryPointState extends State<EntryPoint>
 List<Widget> pages = [
   HomePage(),
   Lista(),
-  Lista(),
+  RecomendationPage(),
   Lista(),
   ProfilePage(),
   Lista(),
