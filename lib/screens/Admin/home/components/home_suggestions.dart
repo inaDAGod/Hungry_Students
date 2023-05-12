@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/components/item_tile_horizontal.dart';
@@ -11,6 +12,7 @@ class HomeSuggestionSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
     return Column(
       children: [
         Padding(
@@ -32,10 +34,10 @@ class HomeSuggestionSection extends StatelessWidget {
           child: StreamBuilder(
             stream: FirebaseDatabase.instance
                 .reference()
-                .child('Popular_Dishes')
+                .child('Comidas/${user.uid}')
                 .onValue,
             builder: (context, AsyncSnapshot snapshot) {
-              if (snapshot.hasData) {
+              if (snapshot.hasData && snapshot.data!.snapshot.value != null) {
                 // Obtiene una lista de Mapas de los datos de Firebase
                 List<Map<dynamic, dynamic>> foodsList = [];
                 Map<dynamic, dynamic> foods = snapshot.data!.snapshot.value;
@@ -49,10 +51,10 @@ class HomeSuggestionSection extends StatelessWidget {
                   itemTiles.add(
                     ItemTileHorizontal(
                       foodName: food['name'],
-                      description: food['description'],
+                      description: food['descripcion'],
                       imageUrl: food['imageUrl'],
-                      price: food['price'],
-                      cal: food['cal'],
+                      price: food['precio'],
+                      cal: food['precio'],
                     ),
                   );
                 }
@@ -63,7 +65,7 @@ class HomeSuggestionSection extends StatelessWidget {
               } else if (snapshot.hasError) {
                 return Text('Error al obtener datos de Firebase');
               } else {
-                return CircularProgressIndicator();
+                return Text('uy parece que aun no tienes platillos');
               }
             },
           ),
