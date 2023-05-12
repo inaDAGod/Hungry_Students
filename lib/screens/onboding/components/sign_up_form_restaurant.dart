@@ -184,8 +184,8 @@ class _SignUpFormResState extends State<SignUpFormRes> {
       "imageUrl": user.photoURL,
       "direccion": "",
       "descripcion": "",
-      "calificacion": 0,
-      "cantComidas":0,
+      "calificacion": "",
+      "cantComidas": "",
     };
     final llave = user.uid;
     // Agrega el dato a la base de datos

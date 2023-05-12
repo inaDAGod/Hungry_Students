@@ -6,19 +6,17 @@ import '../constants/constants.dart';
 import 'network_image.dart';
 
 class ItemTileVertical extends StatelessWidget {
-  const ItemTileVertical(  {
+  const ItemTileVertical({
     Key? key,
     required this.foodName,
     required this.imageUrl,
     required this.description,
-    required this.cal,
     required this.price,
   }) : super(key: key);
 
   final String foodName;
   final String imageUrl;
   final String description;
-  final String cal;
   final String price;
 
   @override
@@ -34,7 +32,8 @@ class ItemTileVertical extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           //Aca empieza los datos de cada ITEM
           child: Container(
-            margin: const EdgeInsets.only(bottom: 16), // add space between items
+            margin:
+                const EdgeInsets.only(bottom: 16), // add space between items
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -46,7 +45,7 @@ class ItemTileVertical extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 8),
-                Expanded( 
+                Expanded(
                   flex: 2,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,11 +64,12 @@ class ItemTileVertical extends StatelessWidget {
                         children: [
                           const Text('Precio'),
                           const Spacer(),
-                          Text('$price Bs',style: const TextStyle(fontWeight: FontWeight.bold,),),
-                          const Spacer(),
-                          const Text('Calificación:'),
-                          const Spacer(),
-                          Text('$cal/5',style: const TextStyle(fontWeight: FontWeight.bold,),),
+                          Text(
+                            '$price Bs',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                           const Spacer(),
                         ],
                       )

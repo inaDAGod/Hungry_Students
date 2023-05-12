@@ -26,6 +26,7 @@ class _OnbodingScreenState extends State<OnbodingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenSize = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Stack(
         children: [
@@ -61,19 +62,20 @@ class _OnbodingScreenState extends State<OnbodingScreen> {
                       child: SizedBox(
                         width: 260,
                         child: Column(
-                          children: const [
+                          children: [
                             Text(
                               "Hungry Students",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontSize: 55,
+                                fontSize: screenSize *
+                                    0.06, // ajusta el tamaño de la fuente según el tamaño de la pantalla
                                 fontWeight: FontWeight.w700,
                                 fontFamily: "Poppins",
                                 height: 1.2,
                               ),
                             ),
-                            SizedBox(height: 16),
-                            Text(
+                            const SizedBox(height: 16),
+                            const Text(
                               "Todos los restaurantes alrededor de la universidad en un solo lugar.",
                               textAlign: TextAlign.center,
                             ),
@@ -200,7 +202,7 @@ class _OnbodingScreenState extends State<OnbodingScreen> {
                             },
                           );
                         }, //pagina para registrarse
-                        child: const Text('Estudiante/Docente'),
+                        child: const Text('Soy cato'),
                       ),
                     ),
                     const Divider(
