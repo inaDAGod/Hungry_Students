@@ -80,7 +80,7 @@ class _RestaurantesPageState extends State<RestaurantesPage> {
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: Colors.grey[200],
+                color: const Color.fromARGB(255, 255, 255, 255),
               ),
               margin: const EdgeInsets.all(10),
               height: MediaQuery.of(context).size.height * 0.3,

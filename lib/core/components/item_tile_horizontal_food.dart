@@ -5,14 +5,15 @@ import '../../screens/food_details/food_details.dart';
 import '../constants/constants.dart';
 import 'network_image.dart';
 
-class ItemTileHorizontal extends StatelessWidget {
-  const ItemTileHorizontal({
+class ItemTileHorizontalFood extends StatelessWidget {
+  const ItemTileHorizontalFood({
     Key? key,
     required this.foodName,
     required this.imageUrl,
     required this.description,
     required this.cal,
     required this.price,
+    required this.llave,
   }) : super(key: key);
 
   final String foodName;
@@ -20,16 +21,23 @@ class ItemTileHorizontal extends StatelessWidget {
   final String description;
   final String cal;
   final String price;
+  final String llave;
 
   @override
   Widget build(BuildContext context) {
     return Material(
       child: InkWell(
         onTap: () {
-          /*
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const FoodDetailsPage()));
-        */
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => FoodDetailsPage(
+                      foodName: foodName,
+                      imageUrl: imageUrl,
+                      description: description,
+                      cal: cal,
+                      price: price,
+                      llave: llave)));
         },
         borderRadius: AppDefaults.borderRadius,
         child: Padding(
@@ -53,7 +61,7 @@ class ItemTileHorizontal extends StatelessWidget {
                 Text(
                   description,
                   style: Theme.of(context).textTheme.caption,
-                ),
+                ),*/
                 const SizedBox(height: 16),
                 Row(
                   children: [
@@ -72,7 +80,7 @@ class ItemTileHorizontal extends StatelessWidget {
                     Text('$cal/5',style: const TextStyle(fontWeight: FontWeight.bold,),),
                     const Spacer(),*/
                   ],
-                )*/
+                )
               ],
             ),
           ),

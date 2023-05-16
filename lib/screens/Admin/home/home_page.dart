@@ -88,6 +88,7 @@ class _HomePageState extends State<HomePage> {
       'correo': correoController,
       'hopen': hopController,
       'hclose': hclController,
+      'llave': user.uid,
     };
 
     // Actualiza solo los atributos especificados en el mapa
