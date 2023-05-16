@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rive_animation/screens/RestaurantList/components/food_info.dart';
 import 'package:rive_animation/screens/entryPoint/entry_point.dart';
 
 class RestaurantesPage extends StatefulWidget {
@@ -7,6 +8,9 @@ class RestaurantesPage extends StatefulWidget {
   final String descripcion;
   final String direccion;
   final String calificacion;
+  final String hop;
+  final String hcl;
+  final String llave;
 
   const RestaurantesPage({
     Key? key,
@@ -15,6 +19,9 @@ class RestaurantesPage extends StatefulWidget {
     required this.descripcion,
     required this.direccion,
     required this.calificacion,
+    required this.hop,
+    required this.hcl,
+    required this.llave,
   }) : super(key: key);
 
   @override
@@ -31,7 +38,7 @@ class _RestaurantesPageState extends State<RestaurantesPage> {
     for (int i = 1; i <= 5; i++) {
       Icon icon = Icon(
         i <= _calificacion ? Icons.star : Icons.star_border,
-        color: Color.fromARGB(255, 219, 89, 57),
+        color: const Color.fromARGB(255, 219, 89, 57),
         size: 40,
       );
       estrellas.add(
@@ -59,7 +66,7 @@ class _RestaurantesPageState extends State<RestaurantesPage> {
       body: Column(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.4,
+            height: MediaQuery.of(context).size.height * 0.3,
             width: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -75,21 +82,41 @@ class _RestaurantesPageState extends State<RestaurantesPage> {
                 borderRadius: BorderRadius.circular(16),
                 color: Colors.grey[200],
               ),
-              margin: const EdgeInsets.all(16),
-              height: MediaQuery.of(context).size.height * 0.4,
+              margin: const EdgeInsets.all(10),
+              height: MediaQuery.of(context).size.height * 0.3,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    children: const [
-                      Icon(Icons.note_alt_outlined),
-                      Text(
+                    children: [
+                      const Icon(Icons.note_alt_outlined),
+                      const Text(
                         'Descripcion',
                         style: TextStyle(fontSize: 17),
                       ),
+                      const SizedBox(width: 65),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      FoodnfoPage(llave: widget.llave)));
+                        },
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            const Color.fromRGBO(180, 52, 29, 0.635),
+                          ), // Cambiar el color aquí
+                        ),
+                        child: Text(
+                          'Menú de\n${widget.nombre}',
+                          style: const TextStyle(fontSize: 14),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     ],
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 14),
                   Padding(
                     padding: const EdgeInsets.only(left: 30),
                     child: Text(
@@ -99,7 +126,7 @@ class _RestaurantesPageState extends State<RestaurantesPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 14),
                   Row(
                     children: const [
                       Icon(Icons.house),
@@ -109,7 +136,7 @@ class _RestaurantesPageState extends State<RestaurantesPage> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 14),
                   Padding(
                     padding: const EdgeInsets.only(left: 30),
                     child: Text(
@@ -119,12 +146,32 @@ class _RestaurantesPageState extends State<RestaurantesPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 14),
+                  Row(
+                    children: const [
+                      Icon(Icons.timelapse_outlined),
+                      Text(
+                        'Horarios:',
+                        style: TextStyle(fontSize: 17),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 14),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: Text(
+                      widget.hop + ' a ' + widget.hcl,
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 14),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: _generarEstrellas(),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 14),
                   TextField(
                     controller: calController,
                     decoration: InputDecoration(

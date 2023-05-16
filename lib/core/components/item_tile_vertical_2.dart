@@ -14,6 +14,9 @@ class ItemTileVertical extends StatelessWidget {
     required this.description,
     required this.cal,
     required this.dire,
+    required this.hop,
+    required this.hcl,
+    required this.llave,
   }) : super(key: key);
 
   final String foodName;
@@ -21,6 +24,9 @@ class ItemTileVertical extends StatelessWidget {
   final String description;
   final String cal;
   final String dire;
+  final String hop;
+  final String hcl;
+  final String llave;
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +37,15 @@ class ItemTileVertical extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => RestaurantesPage(
-                  nombre: foodName,
-                  imageUrl: imageUrl,
-                  descripcion: description,
-                  direccion: dire,
-                  calificacion: cal),
+                nombre: foodName,
+                imageUrl: imageUrl,
+                descripcion: description,
+                direccion: dire,
+                calificacion: cal,
+                hop: hop,
+                hcl: hcl,
+                llave: llave,
+              ),
             ),
           );
         },
