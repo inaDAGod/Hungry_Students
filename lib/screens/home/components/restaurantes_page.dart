@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rive_animation/screens/RestaurantList/components/food_info.dart';
 import 'package:rive_animation/screens/entryPoint/entry_point.dart';
+import 'package:rive_animation/screens/home/components/scores.dart';
 
 class RestaurantesPage extends StatefulWidget {
   final String nombre;
@@ -31,30 +32,6 @@ class RestaurantesPage extends StatefulWidget {
 class _RestaurantesPageState extends State<RestaurantesPage> {
   int _calificacion = 0;
   final TextEditingController calController = TextEditingController();
-
-  List<Widget> _generarEstrellas() {
-    List<Widget> estrellas = [];
-
-    for (int i = 1; i <= 5; i++) {
-      Icon icon = Icon(
-        i <= _calificacion ? Icons.star : Icons.star_border,
-        color: const Color.fromARGB(255, 219, 89, 57),
-        size: 40,
-      );
-      estrellas.add(
-        GestureDetector(
-          child: icon,
-          onTap: () {
-            setState(() {
-              _calificacion = i;
-            });
-          },
-        ),
-      );
-    }
-
-    return estrellas;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -160,71 +137,44 @@ class _RestaurantesPageState extends State<RestaurantesPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 30),
                     child: Text(
-                      widget.hop + ' a ' + widget.hcl,
+                      '${widget.hop} a ${widget.hcl}',
                       style: const TextStyle(
                         fontSize: 16,
                       ),
                     ),
                   ),
                   const SizedBox(height: 14),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: _generarEstrellas(),
-                  ),
-                  const SizedBox(height: 14),
-                  TextField(
-                    controller: calController,
-                    decoration: InputDecoration(
-                      labelText: 'Algun comentario?',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        _calificacion = int.tryParse(value) ?? 0;
-                      });
-                    },
-                  ),
                   Container(
                     alignment: Alignment.center,
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.arrow_circle_up_outlined,
-                        size: 40,
-                        color: Colors.red,
-                      ),
+                    child: ElevatedButton.icon(
                       onPressed: () {
-                        setState(() {
-                          _calificacion = 0;
-                          calController.clear();
-                        });
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return const AlertDialog(
-                              backgroundColor: Color.fromARGB(248, 11, 177, 34),
-                              title: Center(
-                                child: Text(
-                                  'Se subio tu calificacion',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            );
-                          },
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ScoresPage(
+                              calificacion: widget.calificacion,
+                              llave: widget.llave,
+                            ),
+                          ),
                         );
-                        Future.delayed(const Duration(milliseconds: 1036), () {
-                          Navigator.pop(context);
-                        });
                       },
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: const Text(
-                      "Calificar",
-                      style: TextStyle(
-                          fontSize: 15, color: Color.fromARGB(255, 90, 37, 34)),
+                      icon: const Icon(
+                        Icons.people_alt,
+                        size: 40,
+                        color: Color.fromARGB(255, 255, 253, 253),
+                      ),
+                      label: const Text(
+                        "VER OPINIONES",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Color.fromARGB(255, 252, 250, 250),
+                        ),
+                      ),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromARGB(178, 218, 35, 10),
+                        ),
+                      ),
                     ),
                   ),
                 ],
